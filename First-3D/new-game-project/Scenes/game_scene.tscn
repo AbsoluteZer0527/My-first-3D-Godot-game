@@ -1,9 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://duvjmwvyd5uii"]
+[gd_scene load_steps=16 format=3 uid="uid://duvjmwvyd5uii"]
 
 [ext_resource type="PackedScene" path="res://Scenes/player.tscn" id="1_x87qo"]
 [ext_resource type="PackedScene" uid="uid://ch5wgsbao1ifm" path="res://Assets/Models/Cube_Prototype_Large_A.gltf" id="2_b6fju"]
 [ext_resource type="PackedScene" uid="uid://cp58xtnmho1kk" path="res://Assets/Models/Floor.gltf" id="3_6h5vk"]
-[ext_resource type="Script" uid="uid://klep18oa8dh7" path="res://game_manager.gd" id="4_fiftr"]
+[ext_resource type="Script" uid="uid://klep18oa8dh7" path="res://Scripts/game_manager.gd" id="4_fiftr"]
+[ext_resource type="Script" uid="uid://shp4psbqq4fv" path="res://Scripts/jump_pad.gd" id="5_rgj8m"]
+[ext_resource type="PackedScene" uid="uid://dtpoxg8oswypy" path="res://Assets/Models/Primitive_Floor.gltf" id="6_2fmhe"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_oqyrl"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -20,6 +22,21 @@ glow_enabled = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fiftr"]
 size = Vector3(4, 1, 4)
+
+[sub_resource type="Animation" id="Animation_fiftr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MovingPlatform:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(12, 4, 38.111576)]
+}
 
 [sub_resource type="Animation" id="Animation_6h5vk"]
 resource_name = "moving"
@@ -38,21 +55,6 @@ tracks/0/keys = {
 "values": [Vector3(12, 3.5, 27.112), Vector3(12, 3.5, 40.112)]
 }
 
-[sub_resource type="Animation" id="Animation_fiftr"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MovingPlatform:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(12, 4, 38.111576)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1ixah"]
 _data = {
 &"RESET": SubResource("Animation_fiftr"),
@@ -60,6 +62,9 @@ _data = {
 }
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_1ixah"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7iton"]
+size = Vector3(3, 1.2938232, 3)
 
 [node name="GameScene" type="Node3D"]
 
@@ -72,7 +77,8 @@ shadow_enabled = true
 directional_shadow_max_distance = 1.0
 
 [node name="Player" parent="." instance=ExtResource("1_x87qo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 5.233398, 24)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 5.233398, 44)
+speed = 7.0
 
 [node name="Ground" type="Node3D" parent="."]
 
@@ -212,7 +218,7 @@ libraries = {
 autoplay = "moving"
 
 [node name="DeathZone" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6502304, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -13.775494, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DeathZone"]
 shape = SubResource("WorldBoundaryShape3D_1ixah")
@@ -220,4 +226,17 @@ shape = SubResource("WorldBoundaryShape3D_1ixah")
 [node name="GameManager" type="Node3D" parent="."]
 script = ExtResource("4_fiftr")
 
+[node name="JumpPad" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 4, 45)
+script = ExtResource("5_rgj8m")
+metadata/_edit_group_ = true
+
+[node name="Primitive_Floor2" parent="JumpPad" instance=ExtResource("6_2fmhe")]
+transform = Transform3D(0.86, 0, 0, 0, 0.31, 0, 0, 0, 0.86, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="JumpPad"]
+transform = Transform3D(1.204, 0, 0, 0, 0.434, 0, 0, 0, 1.204, 0, 0.063759804, 0)
+shape = SubResource("BoxShape3D_7iton")
+
 [connection signal="body_entered" from="DeathZone" to="GameManager" method="respawn_player"]
+[connection signal="body_entered" from="JumpPad" to="JumpPad" method="_on_body_entered"]
