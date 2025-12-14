@@ -1,7 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://duvjmwvyd5uii"]
+[gd_scene load_steps=7 format=3 uid="uid://duvjmwvyd5uii"]
 
-[ext_resource type="Script" uid="uid://catiphr4uxxil" path="res://Scripts/player.gd" id="1_x87qo"]
-[ext_resource type="Script" uid="uid://bt5xq5fm63sa7" path="res://Scripts/CameraController.gd" id="2_b6fju"]
+[ext_resource type="PackedScene" uid="uid://bo0pwsa6hw5ue" path="res://Scenes/player.tscn" id="1_x87qo"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_oqyrl"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -22,15 +21,6 @@ size = Vector3(10, 1, 10)
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_x87qo"]
 data = PackedVector3Array(-5, 0.5, 5, 5, 0.5, 5, -5, -0.5, 5, 5, 0.5, 5, 5, -0.5, 5, -5, -0.5, 5, 5, 0.5, -5, -5, 0.5, -5, 5, -0.5, -5, -5, 0.5, -5, -5, -0.5, -5, 5, -0.5, -5, 5, 0.5, 5, 5, 0.5, -5, 5, -0.5, 5, 5, 0.5, -5, 5, -0.5, -5, 5, -0.5, 5, -5, 0.5, -5, -5, 0.5, 5, -5, -0.5, -5, -5, 0.5, 5, -5, -0.5, 5, -5, -0.5, -5, 5, 0.5, 5, -5, 0.5, 5, 5, 0.5, -5, -5, 0.5, 5, -5, 0.5, -5, 5, 0.5, -5, -5, -0.5, 5, 5, -0.5, 5, -5, -0.5, -5, 5, -0.5, 5, 5, -0.5, -5, -5, -0.5, -5)
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x87qo"]
-radius = 0.001
-height = 2.005
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_b6fju"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_b6fju"]
-radius = 0.1
-
 [node name="GameScene" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -49,20 +39,5 @@ mesh = SubResource("BoxMesh_oqyrl")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_x87qo")
 
-[node name="Player" type="CharacterBody3D" parent="."]
+[node name="Player" parent="." instance=ExtResource("1_x87qo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.971703, 0)
-script = ExtResource("1_x87qo")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
-shape = SubResource("CapsuleShape3D_x87qo")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
-mesh = SubResource("CapsuleMesh_b6fju")
-
-[node name="SpringArm3D" type="SpringArm3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.155807, 0)
-shape = SubResource("SphereShape3D_b6fju")
-spring_length = 5.0
-script = ExtResource("2_b6fju")
-
-[node name="Camera3D" type="Camera3D" parent="Player/SpringArm3D"]
