@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://duvjmwvyd5uii"]
+[gd_scene load_steps=11 format=3 uid="uid://duvjmwvyd5uii"]
 
 [ext_resource type="PackedScene" path="res://Scenes/player.tscn" id="1_x87qo"]
 [ext_resource type="PackedScene" uid="uid://ch5wgsbao1ifm" path="res://Assets/Models/Cube_Prototype_Large_A.gltf" id="2_b6fju"]
@@ -20,6 +20,44 @@ glow_enabled = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_fiftr"]
 size = Vector3(4, 1, 4)
 
+[sub_resource type="Animation" id="Animation_6h5vk"]
+resource_name = "moving"
+length = 3.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Moving Platform:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(1.03, 2.04),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(12, 3.5, 27.112), Vector3(12, 3.5, 40.112)]
+}
+
+[sub_resource type="Animation" id="Animation_fiftr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Moving Platform:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(12, 4, 38.111576)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1ixah"]
+_data = {
+&"RESET": SubResource("Animation_fiftr"),
+&"moving": SubResource("Animation_6h5vk")
+}
+
 [node name="GameScene" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -31,7 +69,7 @@ shadow_enabled = true
 directional_shadow_max_distance = 1.0
 
 [node name="Player" parent="." instance=ExtResource("1_x87qo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.233398, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 5.233398, 24)
 
 [node name="Node3D" type="Node3D" parent="."]
 
@@ -58,26 +96,30 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 20)
 [node name="Cube_Prototype_Large_A9" parent="Node3D" instance=ExtResource("2_b6fju")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 24)
 
-[node name="Cube_Prototype_Large_A10" parent="Node3D" instance=ExtResource("2_b6fju")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 38)
-
 [node name="Cube_Prototype_Large_A13" parent="Node3D" instance=ExtResource("2_b6fju")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 42)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 47)
 
 [node name="Cube_Prototype_Large_A11" parent="Node3D" instance=ExtResource("2_b6fju")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 38)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 43)
 
 [node name="Cube_Prototype_Large_A14" parent="Node3D" instance=ExtResource("2_b6fju")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 42)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 47)
 
 [node name="Cube_Prototype_Large_A12" parent="Node3D" instance=ExtResource("2_b6fju")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 38)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 43)
 
-[node name="AnimatableBody3D" type="AnimatableBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 4, 28)
+[node name="Moving Platform" type="AnimatableBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 4, 38.111576)
 metadata/_edit_group_ = true
 
-[node name="Floor2" parent="AnimatableBody3D" instance=ExtResource("3_6h5vk")]
+[node name="Floor2" parent="Moving Platform" instance=ExtResource("3_6h5vk")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="AnimatableBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Moving Platform"]
 shape = SubResource("BoxShape3D_fiftr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Moving Platform"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_1ixah")
+}
+autoplay = "moving"
