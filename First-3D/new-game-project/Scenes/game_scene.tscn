@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://duvjmwvyd5uii"]
+[gd_scene load_steps=13 format=3 uid="uid://duvjmwvyd5uii"]
 
 [ext_resource type="PackedScene" path="res://Scenes/player.tscn" id="1_x87qo"]
 [ext_resource type="PackedScene" uid="uid://ch5wgsbao1ifm" path="res://Assets/Models/Cube_Prototype_Large_A.gltf" id="2_b6fju"]
 [ext_resource type="PackedScene" uid="uid://cp58xtnmho1kk" path="res://Assets/Models/Floor.gltf" id="3_6h5vk"]
+[ext_resource type="Script" uid="uid://klep18oa8dh7" path="res://game_manager.gd" id="4_fiftr"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_oqyrl"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -27,7 +28,7 @@ loop_mode = 2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Moving Platform:position")
+tracks/0/path = NodePath("MovingPlatform:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -42,7 +43,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Moving Platform:position")
+tracks/0/path = NodePath("MovingPlatform:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -58,6 +59,8 @@ _data = {
 &"moving": SubResource("Animation_6h5vk")
 }
 
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_1ixah"]
+
 [node name="GameScene" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -71,55 +74,66 @@ directional_shadow_max_distance = 1.0
 [node name="Player" parent="." instance=ExtResource("1_x87qo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 5.233398, 24)
 
-[node name="Node3D" type="Node3D" parent="."]
+[node name="Ground" type="Node3D" parent="."]
 
-[node name="Cube_Prototype_Large_A3" parent="Node3D" instance=ExtResource("2_b6fju")]
+[node name="Cube_Prototype_Large_A3" parent="Ground" instance=ExtResource("2_b6fju")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
 
-[node name="Cube_Prototype_Large_A2" parent="Node3D" instance=ExtResource("2_b6fju")]
+[node name="Cube_Prototype_Large_A2" parent="Ground" instance=ExtResource("2_b6fju")]
 
-[node name="Cube_Prototype_Large_A4" parent="Node3D" instance=ExtResource("2_b6fju")]
+[node name="Cube_Prototype_Large_A4" parent="Ground" instance=ExtResource("2_b6fju")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12)
 
-[node name="Cube_Prototype_Large_A5" parent="Node3D" instance=ExtResource("2_b6fju")]
+[node name="Cube_Prototype_Large_A5" parent="Ground" instance=ExtResource("2_b6fju")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 12)
 
-[node name="Cube_Prototype_Large_A6" parent="Node3D" instance=ExtResource("2_b6fju")]
+[node name="Cube_Prototype_Large_A6" parent="Ground" instance=ExtResource("2_b6fju")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 12)
 
-[node name="Cube_Prototype_Large_A7" parent="Node3D" instance=ExtResource("2_b6fju")]
+[node name="Cube_Prototype_Large_A7" parent="Ground" instance=ExtResource("2_b6fju")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 12)
 
-[node name="Cube_Prototype_Large_A8" parent="Node3D" instance=ExtResource("2_b6fju")]
+[node name="Cube_Prototype_Large_A8" parent="Ground" instance=ExtResource("2_b6fju")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 20)
 
-[node name="Cube_Prototype_Large_A9" parent="Node3D" instance=ExtResource("2_b6fju")]
+[node name="Cube_Prototype_Large_A9" parent="Ground" instance=ExtResource("2_b6fju")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 24)
 
-[node name="Cube_Prototype_Large_A13" parent="Node3D" instance=ExtResource("2_b6fju")]
+[node name="Cube_Prototype_Large_A13" parent="Ground" instance=ExtResource("2_b6fju")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 47)
 
-[node name="Cube_Prototype_Large_A11" parent="Node3D" instance=ExtResource("2_b6fju")]
+[node name="Cube_Prototype_Large_A11" parent="Ground" instance=ExtResource("2_b6fju")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 43)
 
-[node name="Cube_Prototype_Large_A14" parent="Node3D" instance=ExtResource("2_b6fju")]
+[node name="Cube_Prototype_Large_A14" parent="Ground" instance=ExtResource("2_b6fju")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 47)
 
-[node name="Cube_Prototype_Large_A12" parent="Node3D" instance=ExtResource("2_b6fju")]
+[node name="Cube_Prototype_Large_A12" parent="Ground" instance=ExtResource("2_b6fju")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 43)
 
-[node name="Moving Platform" type="AnimatableBody3D" parent="."]
+[node name="MovingPlatform" type="AnimatableBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 4, 38.111576)
 metadata/_edit_group_ = true
 
-[node name="Floor2" parent="Moving Platform" instance=ExtResource("3_6h5vk")]
+[node name="Floor2" parent="MovingPlatform" instance=ExtResource("3_6h5vk")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Moving Platform"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MovingPlatform"]
 shape = SubResource("BoxShape3D_fiftr")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Moving Platform"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MovingPlatform"]
 root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_1ixah")
 }
 autoplay = "moving"
+
+[node name="DeathZone" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6502304, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DeathZone"]
+shape = SubResource("WorldBoundaryShape3D_1ixah")
+
+[node name="GameManager" type="Node3D" parent="."]
+script = ExtResource("4_fiftr")
+
+[connection signal="body_entered" from="DeathZone" to="GameManager" method="respawn_player"]
