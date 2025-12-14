@@ -32,7 +32,7 @@ tracks/0/path = NodePath("MovingPlatform:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = false
 tracks/0/keys = {
-"times": PackedFloat32Array(1.03, 2.04),
+"times": PackedFloat32Array(1.03, 1.7),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(12, 3.5, 27.112), Vector3(12, 3.5, 40.112)]
@@ -109,6 +109,90 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 43)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 47)
 
 [node name="Cube_Prototype_Large_A12" parent="Ground" instance=ExtResource("2_b6fju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 43)
+
+[node name="Cube_Prototype_Large_A15" parent="Ground" instance=ExtResource("2_b6fju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 47)
+
+[node name="Cube_Prototype_Large_A16" parent="Ground" instance=ExtResource("2_b6fju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 43)
+
+[node name="Cube_Prototype_Large_A17" parent="Ground" instance=ExtResource("2_b6fju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 47)
+
+[node name="Cube_Prototype_Large_A19" parent="Ground" instance=ExtResource("2_b6fju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 0, 45)
+
+[node name="Cube_Prototype_Large_A20" parent="Ground" instance=ExtResource("2_b6fju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 45)
+
+[node name="Cube_Prototype_Large_A21" parent="Ground" instance=ExtResource("2_b6fju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 0, 45)
+
+[node name="Cube_Prototype_Large_A22" parent="Ground" instance=ExtResource("2_b6fju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 45)
+
+[node name="Cube_Prototype_Large_A23" parent="Ground" instance=ExtResource("2_b6fju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34, 0, 45)
+
+[node name="Cube_Prototype_Large_A24" parent="Ground" instance=ExtResource("2_b6fju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 0, 45)
+
+[node name="Cube_Prototype_Large_A25" parent="Ground" instance=ExtResource("2_b6fju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34, 0, 45)
+
+[node name="Cube_Prototype_Large_A26" parent="Ground" instance=ExtResource("2_b6fju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 0, 45)
+
+[node name="Cube_Prototype_Large_A27" parent="Ground" instance=ExtResource("2_b6fju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46, 5, 45)
+
+[node name="Cube_Prototype_Large_A28" parent="Ground" instance=ExtResource("2_b6fju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 5, 45)
+
+[node name="Cube_Prototype_Large_A29" parent="Ground" instance=ExtResource("2_b6fju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46, 5, 45)
+
+[node name="Cube_Prototype_Large_A30" parent="Ground" instance=ExtResource("2_b6fju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 5, 45)
+
+[node name="Cube_Prototype_Large_A31" parent="Ground" instance=ExtResource("2_b6fju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54, 5, 45)
+
+[node name="Cube_Prototype_Large_A32" parent="Ground" instance=ExtResource("2_b6fju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58, 5, 45)
+
+[node name="Cube_Prototype_Large_A33" parent="Ground" instance=ExtResource("2_b6fju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54, 5, 45)
+
+[node name="Cube_Prototype_Large_A35" parent="Ground" instance=ExtResource("2_b6fju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 5, 49)
+
+[node name="Cube_Prototype_Large_A36" parent="Ground" instance=ExtResource("2_b6fju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 5, 49)
+
+[node name="Cube_Prototype_Large_A37" parent="Ground" instance=ExtResource("2_b6fju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54, 5, 49)
+
+[node name="Cube_Prototype_Large_A38" parent="Ground" instance=ExtResource("2_b6fju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54, 5, 49)
+
+[node name="Cube_Prototype_Large_A39" parent="Ground" instance=ExtResource("2_b6fju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 5, 41)
+
+[node name="Cube_Prototype_Large_A40" parent="Ground" instance=ExtResource("2_b6fju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 5, 41)
+
+[node name="Cube_Prototype_Large_A41" parent="Ground" instance=ExtResource("2_b6fju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54, 5, 41)
+
+[node name="Cube_Prototype_Large_A42" parent="Ground" instance=ExtResource("2_b6fju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54, 5, 41)
+
+[node name="Cube_Prototype_Large_A34" parent="Ground" instance=ExtResource("2_b6fju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58, 5, 45)
+
+[node name="Cube_Prototype_Large_A18" parent="Ground" instance=ExtResource("2_b6fju")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 43)
 
 [node name="MovingPlatform" type="AnimatableBody3D" parent="."]
