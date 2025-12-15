@@ -1,9 +1,14 @@
 extends Node3D
+class_name GameManager
 
+static var instance: GameManager
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	if instance == null: 
+		instance = self
+	else:
+		queue_free()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -13,3 +18,6 @@ func _process(delta: float) -> void:
 func respawn_player(body: Node3D) -> void:
 	if body is CharacterBody3D:
 		get_tree().reload_current_scene()
+
+func collect_item(item_type):
+	print(item_type)

@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://klep18oa8dh7" path="res://Scripts/game_manager.gd" id="4_fiftr"]
 [ext_resource type="Script" uid="uid://shp4psbqq4fv" path="res://Scripts/jump_pad.gd" id="5_rgj8m"]
 [ext_resource type="PackedScene" uid="uid://dtpoxg8oswypy" path="res://Assets/Models/Primitive_Floor.gltf" id="6_2fmhe"]
-[ext_resource type="PackedScene" uid="uid://bq8nqbvvr22t6" path="res://Scenes/collectable.tscn" id="7_2fmhe"]
+[ext_resource type="PackedScene" uid="uid://c131uyqd7r750" path="res://Scenes/collectable.tscn" id="7_2fmhe"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_oqyrl"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
