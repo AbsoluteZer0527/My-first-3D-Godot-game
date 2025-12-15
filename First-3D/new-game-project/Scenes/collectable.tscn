@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://bq8nqbvvr22t6"]
+
+[ext_resource type="Script" uid="uid://b7oegb4e7g3l8" path="res://Scripts/collectable.gd" id="1_licok"]
+[ext_resource type="PackedScene" uid="uid://br17ail37sgxr" path="res://Assets/Models/collectible_diamond.glb" id="2_me652"]
+[ext_resource type="PackedScene" uid="uid://dsmcmpt4r4o06" path="res://Assets/Models/collectible_coin.gltf" id="3_govy6"]
+[ext_resource type="PackedScene" uid="uid://bdbdii6wxtrcx" path="res://Assets/Models/collectible_cherry.glb" id="4_v8770"]
+
+[node name="Collectable" type="Area3D"]
+script = ExtResource("1_licok")
+diamond_model = ExtResource("2_me652")
+coin_model = ExtResource("3_govy6")
+cherry_model = ExtResource("4_v8770")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 2, -8.742278e-08)
+light_color = Color(1, 0.992, 0.76, 1)
+light_energy = 11.085
+spot_angle = 28.982523
+spot_angle_attenuation = 0.10511216
