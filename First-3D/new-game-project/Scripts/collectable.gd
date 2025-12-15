@@ -17,6 +17,7 @@ var original_y: float
 func _ready() -> void:
 	original_y = position.y
 	
+	type = randi_range(0, 2)
 	var model: PackedScene
 	match type: 
 		CollectibleType.DIAMOND:
