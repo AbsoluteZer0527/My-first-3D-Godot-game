@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://duvjmwvyd5uii"]
+[gd_scene load_steps=21 format=3 uid="uid://duvjmwvyd5uii"]
 
 [ext_resource type="PackedScene" path="res://Scenes/player.tscn" id="1_x87qo"]
 [ext_resource type="PackedScene" uid="uid://ch5wgsbao1ifm" path="res://Assets/Models/Cube_Prototype_Large_A.gltf" id="2_b6fju"]
@@ -64,7 +64,40 @@ _data = {
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_1ixah"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7iton"]
-size = Vector3(3, 1.2938232, 3)
+size = Vector3(3.4470215, 0.87054443, 3.4051514)
+
+[sub_resource type="Curve" id="Curve_rgj8m"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.85447764, 0.42487878), -1.4134759, -1.4134759, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_2fmhe"]
+curve = SubResource("Curve_rgj8m")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7iton"]
+particle_flag_align_y = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 0.1
+emission_ring_radius = 0.2
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+angle_min = 1.0728835e-05
+angle_max = 14.800011
+direction = Vector3(0, 1, 0)
+spread = 68.097
+initial_velocity_min = 5.0
+initial_velocity_max = 6.0
+gravity = Vector3(0, -15, 0)
+scale_min = 0.5
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_2fmhe")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ikfsv"]
+albedo_color = Color(1, 0.9853333, 0.56, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5dgvu"]
+material = SubResource("StandardMaterial3D_ikfsv")
+size = Vector3(0.1, 0.1, 0.1)
 
 [node name="GameScene" type="Node3D"]
 
@@ -226,17 +259,27 @@ shape = SubResource("WorldBoundaryShape3D_1ixah")
 [node name="GameManager" type="Node3D" parent="."]
 script = ExtResource("4_fiftr")
 
-[node name="JumpPad" type="Area3D" parent="."]
+[node name="JumpPad" type="Area3D" parent="." node_paths=PackedStringArray("particle_system")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 4, 45)
 script = ExtResource("5_rgj8m")
+particle_system = NodePath("GPUParticles3D")
 metadata/_edit_group_ = true
 
 [node name="Primitive_Floor2" parent="JumpPad" instance=ExtResource("6_2fmhe")]
 transform = Transform3D(0.86, 0, 0, 0, 0.31, 0, 0, 0, 0.86, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="JumpPad"]
-transform = Transform3D(1.204, 0, 0, 0, 0.434, 0, 0, 0, 1.204, 0, 0.063759804, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1478796, -0.0005493164)
 shape = SubResource("BoxShape3D_7iton")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="JumpPad"]
+emitting = false
+amount = 40
+lifetime = 2.01
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_7iton")
+draw_pass_1 = SubResource("BoxMesh_5dgvu")
 
 [connection signal="body_entered" from="DeathZone" to="GameManager" method="respawn_player"]
 [connection signal="body_entered" from="JumpPad" to="JumpPad" method="_on_body_entered"]
