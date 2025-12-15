@@ -1,3 +1,13 @@
-[gd_resource type="Theme" format=3 uid="uid://catwci5u1txuw"]
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://catwci5u1txuw"]
+
+[ext_resource type="FontFile" uid="uid://mmpl5v1h5ps5" path="res://Assets/Fonts/ZCOOL-Wenyi.ttf" id="1_ke8oh"]
 
 [resource]
+CherryLabel/base_type = &"Label"
+CherryLabel/colors/font_outline_color = Color(0.82, 0.049200002, 0.049200002, 1)
+CoinLabel/base_type = &"Label"
+CoinLabel/colors/font_outline_color = Color(0.82, 0.68743336, 0.024599977, 1)
+Label/colors/font_outline_color = Color(0.21390001, 0.6674301, 0.93, 1)
+Label/constants/outline_size = 24
+Label/font_sizes/font_size = 72
+Label/fonts/font = ExtResource("1_ke8oh")

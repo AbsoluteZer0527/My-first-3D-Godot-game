@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://duvjmwvyd5uii"]
+[gd_scene load_steps=26 format=3 uid="uid://duvjmwvyd5uii"]
 
 [ext_resource type="PackedScene" path="res://Scenes/player.tscn" id="1_x87qo"]
 [ext_resource type="PackedScene" uid="uid://ch5wgsbao1ifm" path="res://Assets/Models/Cube_Prototype_Large_A.gltf" id="2_b6fju"]
@@ -7,6 +7,10 @@
 [ext_resource type="Script" uid="uid://shp4psbqq4fv" path="res://Scripts/jump_pad.gd" id="5_rgj8m"]
 [ext_resource type="PackedScene" uid="uid://dtpoxg8oswypy" path="res://Assets/Models/Primitive_Floor.gltf" id="6_2fmhe"]
 [ext_resource type="PackedScene" uid="uid://c131uyqd7r750" path="res://Scenes/collectable.tscn" id="7_2fmhe"]
+[ext_resource type="Texture2D" uid="uid://c8fjg1s34jkmi" path="res://Assets/Textures/diamond_icon.png" id="8_uscyt"]
+[ext_resource type="Theme" uid="uid://catwci5u1txuw" path="res://main_ui.tres" id="9_4xiap"]
+[ext_resource type="Texture2D" uid="uid://hkklphne2xsk" path="res://Assets/Textures/coin_icon.png" id="10_wywco"]
+[ext_resource type="Texture2D" uid="uid://dsk5lukx4qe1p" path="res://Assets/Textures/cherry_icon.png" id="11_ldntv"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_oqyrl"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -301,7 +305,64 @@ type = 2
 [node name="Collectible6" parent="Collectibles" instance=ExtResource("7_2fmhe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="UI"]
+offset_left = 37.0
+offset_top = 25.0
+offset_right = 155.58621
+offset_bottom = 139.0
+texture = ExtResource("8_uscyt")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="UI"]
+offset_left = 194.0
+offset_top = 53.0
+offset_right = 238.0
+offset_bottom = 126.0
+theme = ExtResource("9_4xiap")
+text = "0"
+autowrap_mode = 3
+
+[node name="TextureRect2" type="TextureRect" parent="UI"]
+offset_left = 37.0
+offset_top = 172.0
+offset_right = 155.58621
+offset_bottom = 286.0
+texture = ExtResource("10_wywco")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label2" type="Label" parent="UI"]
+offset_left = 194.0
+offset_top = 200.0
+offset_right = 238.0
+offset_bottom = 273.0
+rotation = 0.010228087
+theme = ExtResource("9_4xiap")
+theme_type_variation = &"CoinLabel"
+text = "0"
+autowrap_mode = 3
+
+[node name="TextureRect3" type="TextureRect" parent="UI"]
+offset_left = 37.0
+offset_top = 311.0
+offset_right = 155.58621
+offset_bottom = 425.0
+texture = ExtResource("11_ldntv")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label3" type="Label" parent="UI"]
+offset_left = 194.0
+offset_top = 339.0
+offset_right = 238.0
+offset_bottom = 412.0
+theme = ExtResource("9_4xiap")
+theme_type_variation = &"CherryLabel"
+text = "0"
+autowrap_mode = 3
 
 [connection signal="body_entered" from="DeathZone" to="GameManager" method="respawn_player"]
 [connection signal="body_entered" from="JumpPad" to="JumpPad" method="_on_body_entered"]
