@@ -261,8 +261,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -13.775494, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DeathZone"]
 shape = SubResource("WorldBoundaryShape3D_1ixah")
 
-[node name="GameManager" type="Node3D" parent="."]
+[node name="GameManager" type="Node3D" parent="." node_paths=PackedStringArray("item_labels")]
 script = ExtResource("4_fiftr")
+item_labels = {
+"COIN": NodePath("../UI/PanelContainer/VBoxContainer/HBoxContainer2/Label2"),
+"DIAMOND": NodePath("../UI/PanelContainer/VBoxContainer/HBoxContainer/Label")
+}
 
 [node name="JumpPad" type="Area3D" parent="." node_paths=PackedStringArray("particle_system")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 4, 45)
@@ -308,8 +312,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12)
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="PanelContainer" type="PanelContainer" parent="UI"]
-offset_right = 178.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -178.0
 offset_bottom = 311.0
+grow_horizontal = 0
 theme = ExtResource("9_4xiap")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/PanelContainer"]

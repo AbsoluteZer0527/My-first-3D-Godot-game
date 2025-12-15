@@ -9,6 +9,8 @@ static var instance: GameManager
 		'CHERRY': 0,
 }
 
+@export var item_labels: Dictionary[String, Label]
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if instance == null: 
@@ -27,3 +29,4 @@ func respawn_player(body: Node3D) -> void:
 
 func collect_item(item_type):
 	collected_items[item_type] += 1
+	item_labels[item_type].text = str(collected_items[item_type])
