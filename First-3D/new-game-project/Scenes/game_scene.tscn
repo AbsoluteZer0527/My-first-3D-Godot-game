@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://duvjmwvyd5uii"]
+[gd_scene load_steps=22 format=3 uid="uid://duvjmwvyd5uii"]
 
 [ext_resource type="PackedScene" path="res://Scenes/player.tscn" id="1_x87qo"]
 [ext_resource type="PackedScene" uid="uid://ch5wgsbao1ifm" path="res://Assets/Models/Cube_Prototype_Large_A.gltf" id="2_b6fju"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://klep18oa8dh7" path="res://Scripts/game_manager.gd" id="4_fiftr"]
 [ext_resource type="Script" uid="uid://shp4psbqq4fv" path="res://Scripts/jump_pad.gd" id="5_rgj8m"]
 [ext_resource type="PackedScene" uid="uid://dtpoxg8oswypy" path="res://Assets/Models/Primitive_Floor.gltf" id="6_2fmhe"]
+[ext_resource type="PackedScene" uid="uid://bq8nqbvvr22t6" path="res://Scenes/collectable.tscn" id="7_2fmhe"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_oqyrl"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -110,7 +111,7 @@ shadow_enabled = true
 directional_shadow_max_distance = 1.0
 
 [node name="Player" parent="." instance=ExtResource("1_x87qo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 5.233398, 44)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 5.233398, 4)
 speed = 7.0
 
 [node name="Ground" type="Node3D" parent="."]
@@ -280,6 +281,25 @@ one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_7iton")
 draw_pass_1 = SubResource("BoxMesh_5dgvu")
+
+[node name="Collectibles" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 12)
+
+[node name="Collectible2" parent="Collectibles" instance=ExtResource("7_2fmhe")]
+
+[node name="Collectible3" parent="Collectibles" instance=ExtResource("7_2fmhe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+type = 1
+
+[node name="Collectible4" parent="Collectibles" instance=ExtResource("7_2fmhe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+
+[node name="Collectible5" parent="Collectibles" instance=ExtResource("7_2fmhe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 0)
+type = 2
+
+[node name="Collectible6" parent="Collectibles" instance=ExtResource("7_2fmhe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12)
 
 [connection signal="body_entered" from="DeathZone" to="GameManager" method="respawn_player"]
 [connection signal="body_entered" from="JumpPad" to="JumpPad" method="_on_body_entered"]
