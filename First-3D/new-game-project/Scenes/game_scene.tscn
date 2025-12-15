@@ -301,5 +301,7 @@ type = 2
 [node name="Collectible6" parent="Collectibles" instance=ExtResource("7_2fmhe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12)
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
 [connection signal="body_entered" from="DeathZone" to="GameManager" method="respawn_player"]
 [connection signal="body_entered" from="JumpPad" to="JumpPad" method="_on_body_entered"]
