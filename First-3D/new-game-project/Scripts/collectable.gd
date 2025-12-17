@@ -35,3 +35,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	rotation.y += rotation_speed* delta
 	position.y = original_y + sin(Time.get_ticks_msec()*floating_speed) * floating_magnitude
+
+
+func _on_body_entered(body: Node3D) -> void:
+	if body is CharacterBody3D:
+		queue_free()
+		GameManager.instance.collect_item(CollectibleType.find_key(type))

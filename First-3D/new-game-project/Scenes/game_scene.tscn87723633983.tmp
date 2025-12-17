@@ -1,16 +1,12 @@
-[gd_scene load_steps=26 format=3 uid="uid://duvjmwvyd5uii"]
+[gd_scene load_steps=22 format=3 uid="uid://duvjmwvyd5uii"]
 
-[ext_resource type="PackedScene" uid="uid://bo0pwsa6hw5ue" path="res://Scenes/player.tscn" id="1_x87qo"]
+[ext_resource type="PackedScene" path="res://Scenes/player.tscn" id="1_x87qo"]
 [ext_resource type="PackedScene" uid="uid://ch5wgsbao1ifm" path="res://Assets/Models/Cube_Prototype_Large_A.gltf" id="2_b6fju"]
 [ext_resource type="PackedScene" uid="uid://cp58xtnmho1kk" path="res://Assets/Models/Floor.gltf" id="3_6h5vk"]
 [ext_resource type="Script" uid="uid://klep18oa8dh7" path="res://Scripts/game_manager.gd" id="4_fiftr"]
 [ext_resource type="Script" uid="uid://shp4psbqq4fv" path="res://Scripts/jump_pad.gd" id="5_rgj8m"]
 [ext_resource type="PackedScene" uid="uid://dtpoxg8oswypy" path="res://Assets/Models/Primitive_Floor.gltf" id="6_2fmhe"]
 [ext_resource type="PackedScene" uid="uid://c131uyqd7r750" path="res://Scenes/collectable.tscn" id="7_2fmhe"]
-[ext_resource type="Texture2D" uid="uid://c8fjg1s34jkmi" path="res://Assets/Textures/diamond_icon.png" id="8_uscyt"]
-[ext_resource type="Theme" uid="uid://catwci5u1txuw" path="res://main_ui.tres" id="9_4xiap"]
-[ext_resource type="Texture2D" uid="uid://hkklphne2xsk" path="res://Assets/Textures/coin_icon.png" id="10_wywco"]
-[ext_resource type="Texture2D" uid="uid://dsk5lukx4qe1p" path="res://Assets/Textures/cherry_icon.png" id="11_ldntv"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_oqyrl"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -261,13 +257,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -13.775494, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DeathZone"]
 shape = SubResource("WorldBoundaryShape3D_1ixah")
 
-[node name="GameManager" type="Node3D" parent="." node_paths=PackedStringArray("item_labels")]
+[node name="GameManager" type="Node3D" parent="."]
 script = ExtResource("4_fiftr")
-item_labels = {
-"CHERRY": NodePath("../UI/PanelContainer/VBoxContainer/HBoxContainer3/Label3"),
-"COIN": NodePath("../UI/PanelContainer/VBoxContainer/HBoxContainer2/Label2"),
-"DIAMOND": NodePath("../UI/PanelContainer/VBoxContainer/HBoxContainer/Label")
-}
 
 [node name="JumpPad" type="Area3D" parent="." node_paths=PackedStringArray("particle_system")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 4, 45)
@@ -298,83 +289,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 12)
 
 [node name="Collectible3" parent="Collectibles" instance=ExtResource("7_2fmhe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+type = 1
 
 [node name="Collectible4" parent="Collectibles" instance=ExtResource("7_2fmhe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
 
 [node name="Collectible5" parent="Collectibles" instance=ExtResource("7_2fmhe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 0)
+type = 2
 
 [node name="Collectible6" parent="Collectibles" instance=ExtResource("7_2fmhe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12)
-
-[node name="UI" type="CanvasLayer" parent="."]
-
-[node name="PanelContainer" type="PanelContainer" parent="UI"]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -178.0
-offset_bottom = 311.0
-grow_horizontal = 0
-theme = ExtResource("9_4xiap")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/PanelContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme_override_constants/separation = 30
-alignment = 1
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="UI/PanelContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 30
-alignment = 1
-
-[node name="TextureRect2" type="TextureRect" parent="UI/PanelContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-texture = ExtResource("10_wywco")
-expand_mode = 2
-stretch_mode = 5
-
-[node name="Label2" type="Label" parent="UI/PanelContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-theme = ExtResource("9_4xiap")
-theme_type_variation = &"CoinLabel"
-text = "0"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/PanelContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 30
-alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="UI/PanelContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("8_uscyt")
-expand_mode = 2
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="UI/PanelContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-theme = ExtResource("9_4xiap")
-text = "0"
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="UI/PanelContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 30
-alignment = 1
-
-[node name="TextureRect3" type="TextureRect" parent="UI/PanelContainer/VBoxContainer/HBoxContainer3"]
-layout_mode = 2
-texture = ExtResource("11_ldntv")
-expand_mode = 2
-stretch_mode = 5
-
-[node name="Label3" type="Label" parent="UI/PanelContainer/VBoxContainer/HBoxContainer3"]
-layout_mode = 2
-theme = ExtResource("9_4xiap")
-theme_type_variation = &"CherryLabel"
-text = "0"
 
 [connection signal="body_entered" from="DeathZone" to="GameManager" method="respawn_player"]
 [connection signal="body_entered" from="JumpPad" to="JumpPad" method="_on_body_entered"]
