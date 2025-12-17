@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://duvjmwvyd5uii"]
+[gd_scene load_steps=34 format=3 uid="uid://duvjmwvyd5uii"]
 
 [ext_resource type="PackedScene" uid="uid://bo0pwsa6hw5ue" path="res://Scenes/player.tscn" id="1_x87qo"]
 [ext_resource type="PackedScene" uid="uid://ch5wgsbao1ifm" path="res://Assets/Models/Cube_Prototype_Large_A.gltf" id="2_b6fju"]
@@ -11,6 +11,8 @@
 [ext_resource type="Theme" uid="uid://catwci5u1txuw" path="res://main_ui.tres" id="9_4xiap"]
 [ext_resource type="Texture2D" uid="uid://hkklphne2xsk" path="res://Assets/Textures/coin_icon.png" id="10_wywco"]
 [ext_resource type="Texture2D" uid="uid://dsk5lukx4qe1p" path="res://Assets/Textures/cherry_icon.png" id="11_ldntv"]
+[ext_resource type="PackedScene" uid="uid://cxf6jdceg48n4" path="res://Assets/Models/obstacle.glb" id="12_4xiap"]
+[ext_resource type="Texture2D" uid="uid://dex0stevxc04f" path="res://Assets/Textures/rainbow_texture.png" id="13_wywco"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_oqyrl"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -104,6 +106,54 @@ albedo_color = Color(1, 0.9853333, 0.56, 1)
 material = SubResource("StandardMaterial3D_ikfsv")
 size = Vector3(0.1, 0.1, 0.1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wywco"]
+albedo_color = Color(0.94, 0.8272, 0.4888, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ldntv"]
+albedo_color = Color(1, 0.39999998, 0.39999998, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w8jfd"]
+albedo_color = Color(0.52919996, 0.98, 0.90486664, 1)
+albedo_texture = ExtResource("13_wywco")
+
+[sub_resource type="Animation" id="Animation_a7fet"]
+resource_name = "rotate"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Obstacle:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5707964, 0), Vector3(0, 6.2831855, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8m72m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Obstacle:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.5707964, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gtbs0"]
+_data = {
+&"RESET": SubResource("Animation_8m72m"),
+&"rotate": SubResource("Animation_a7fet")
+}
+
 [node name="GameScene" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -115,7 +165,7 @@ shadow_enabled = true
 directional_shadow_max_distance = 1.0
 
 [node name="Player" parent="." instance=ExtResource("1_x87qo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 5.233398, 4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 5.233398, 45)
 speed = 7.0
 
 [node name="Ground" type="Node3D" parent="."]
@@ -376,5 +426,22 @@ theme = ExtResource("9_4xiap")
 theme_type_variation = &"CherryLabel"
 text = "0"
 
+[node name="obstacle" parent="." instance=ExtResource("12_4xiap")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52, 9, 46)
+
+[node name="Obstacle" parent="obstacle" index="0"]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, -0.97901917, -0.32938957, -1.2287979)
+surface_material_override/0 = SubResource("StandardMaterial3D_wywco")
+surface_material_override/1 = SubResource("StandardMaterial3D_ldntv")
+surface_material_override/2 = SubResource("StandardMaterial3D_w8jfd")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="obstacle"]
+libraries = {
+&"": SubResource("AnimationLibrary_gtbs0")
+}
+autoplay = "rotate"
+
 [connection signal="body_entered" from="DeathZone" to="GameManager" method="respawn_player"]
 [connection signal="body_entered" from="JumpPad" to="JumpPad" method="_on_body_entered"]
+
+[editable path="obstacle"]
