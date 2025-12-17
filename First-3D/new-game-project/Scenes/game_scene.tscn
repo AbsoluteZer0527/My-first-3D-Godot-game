@@ -1,6 +1,6 @@
 [gd_scene load_steps=26 format=3 uid="uid://duvjmwvyd5uii"]
 
-[ext_resource type="PackedScene" path="res://Scenes/player.tscn" id="1_x87qo"]
+[ext_resource type="PackedScene" uid="uid://bo0pwsa6hw5ue" path="res://Scenes/player.tscn" id="1_x87qo"]
 [ext_resource type="PackedScene" uid="uid://ch5wgsbao1ifm" path="res://Assets/Models/Cube_Prototype_Large_A.gltf" id="2_b6fju"]
 [ext_resource type="PackedScene" uid="uid://cp58xtnmho1kk" path="res://Assets/Models/Floor.gltf" id="3_6h5vk"]
 [ext_resource type="Script" uid="uid://klep18oa8dh7" path="res://Scripts/game_manager.gd" id="4_fiftr"]
@@ -264,6 +264,7 @@ shape = SubResource("WorldBoundaryShape3D_1ixah")
 [node name="GameManager" type="Node3D" parent="." node_paths=PackedStringArray("item_labels")]
 script = ExtResource("4_fiftr")
 item_labels = {
+"CHERRY": NodePath("../UI/PanelContainer/VBoxContainer/HBoxContainer3/Label3"),
 "COIN": NodePath("../UI/PanelContainer/VBoxContainer/HBoxContainer2/Label2"),
 "DIAMOND": NodePath("../UI/PanelContainer/VBoxContainer/HBoxContainer/Label")
 }
@@ -297,14 +298,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 12)
 
 [node name="Collectible3" parent="Collectibles" instance=ExtResource("7_2fmhe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
-type = 1
 
 [node name="Collectible4" parent="Collectibles" instance=ExtResource("7_2fmhe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
 
 [node name="Collectible5" parent="Collectibles" instance=ExtResource("7_2fmhe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 0)
-type = 2
 
 [node name="Collectible6" parent="Collectibles" instance=ExtResource("7_2fmhe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12)
