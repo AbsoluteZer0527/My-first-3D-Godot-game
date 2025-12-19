@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://duvjmwvyd5uii"]
+[gd_scene load_steps=36 format=3 uid="uid://duvjmwvyd5uii"]
 
 [ext_resource type="PackedScene" uid="uid://bo0pwsa6hw5ue" path="res://Scenes/player.tscn" id="1_x87qo"]
 [ext_resource type="PackedScene" uid="uid://ch5wgsbao1ifm" path="res://Assets/Models/Cube_Prototype_Large_A.gltf" id="2_b6fju"]
@@ -13,6 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://dsk5lukx4qe1p" path="res://Assets/Textures/cherry_icon.png" id="11_ldntv"]
 [ext_resource type="PackedScene" uid="uid://cxf6jdceg48n4" path="res://Assets/Models/obstacle.glb" id="12_4xiap"]
 [ext_resource type="Texture2D" uid="uid://dex0stevxc04f" path="res://Assets/Textures/rainbow_texture.png" id="13_wywco"]
+[ext_resource type="PackedScene" uid="uid://82xd6fhjrcus" path="res://Assets/Models/Primitive_Beam.gltf" id="14_ldntv"]
+[ext_resource type="PackedScene" uid="uid://b34sustvywb1x" path="res://Scenes/checkpoint.tscn" id="15_w8jfd"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_oqyrl"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -116,6 +118,21 @@ albedo_color = Color(1, 0.39999998, 0.39999998, 1)
 albedo_color = Color(0.52919996, 0.98, 0.90486664, 1)
 albedo_texture = ExtResource("13_wywco")
 
+[sub_resource type="Animation" id="Animation_8m72m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Obstacle:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.5707964, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_a7fet"]
 resource_name = "rotate"
 length = 4.0
@@ -131,21 +148,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0, 1.5707964, 0), Vector3(0, 6.2831855, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_8m72m"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Obstacle:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 1.5707964, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gtbs0"]
@@ -165,7 +167,7 @@ shadow_enabled = true
 directional_shadow_max_distance = 1.0
 
 [node name="Player" parent="." instance=ExtResource("1_x87qo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 5.233398, 45)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.233398, 4)
 speed = 7.0
 
 [node name="Ground" type="Node3D" parent="."]
@@ -271,6 +273,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54, 5, 49)
 [node name="Cube_Prototype_Large_A38" parent="Ground" instance=ExtResource("2_b6fju")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54, 5, 49)
 
+[node name="Cube_Prototype_Large_A43" parent="Ground" instance=ExtResource("2_b6fju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86, 5, 43)
+
+[node name="Cube_Prototype_Large_A44" parent="Ground" instance=ExtResource("2_b6fju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90, 5, 43)
+
+[node name="Cube_Prototype_Large_A45" parent="Ground" instance=ExtResource("2_b6fju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86, 5, 47)
+
+[node name="Cube_Prototype_Large_A46" parent="Ground" instance=ExtResource("2_b6fju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90, 5, 47)
+
 [node name="Cube_Prototype_Large_A39" parent="Ground" instance=ExtResource("2_b6fju")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 5, 41)
 
@@ -289,6 +303,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58, 5, 45)
 [node name="Cube_Prototype_Large_A18" parent="Ground" instance=ExtResource("2_b6fju")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 43)
 
+[node name="Primitive_Beam2" parent="Ground" instance=ExtResource("14_ldntv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.0006, 8.004977, 44.99964)
+
+[node name="Primitive_Beam3" parent="Ground" instance=ExtResource("14_ldntv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68, 8, 45)
+
+[node name="Primitive_Beam4" parent="Ground" instance=ExtResource("14_ldntv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75, 8, 45)
+
+[node name="Primitive_Beam5" parent="Ground" instance=ExtResource("14_ldntv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79, 8, 45)
+
 [node name="MovingPlatform" type="AnimatableBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 4, 38.111576)
 metadata/_edit_group_ = true
@@ -306,7 +332,7 @@ libraries = {
 autoplay = "moving"
 
 [node name="DeathZone" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -13.775494, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -17.64806, 0.051750183)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DeathZone"]
 shape = SubResource("WorldBoundaryShape3D_1ixah")
@@ -430,7 +456,7 @@ text = "0"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52, 9, 46)
 
 [node name="Obstacle" parent="obstacle" index="0"]
-transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, -0.97901917, -0.32938957, -1.2287979)
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 1.0209808, -0.32938957, -1.2287979)
 surface_material_override/0 = SubResource("StandardMaterial3D_wywco")
 surface_material_override/1 = SubResource("StandardMaterial3D_ldntv")
 surface_material_override/2 = SubResource("StandardMaterial3D_w8jfd")
@@ -440,6 +466,18 @@ libraries = {
 &"": SubResource("AnimationLibrary_gtbs0")
 }
 autoplay = "rotate"
+
+[node name="Checkpoint" parent="." instance=ExtResource("15_w8jfd")]
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 13, 4, 13)
+
+[node name="Checkpoint2" parent="." instance=ExtResource("15_w8jfd")]
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 17, 4, 48)
+
+[node name="Checkpoint3" parent="." instance=ExtResource("15_w8jfd")]
+transform = Transform3D(1.9470718e-07, 0, -1, 0, 1, 0, 1, 0, 1.9470718e-07, 47, 9, 44)
+
+[node name="Checkpoint4" parent="." instance=ExtResource("15_w8jfd")]
+transform = Transform3D(1.9470718e-07, 0, -1, 0, 1, 0, 1, 0, 1.9470718e-07, 91, 9, 44)
 
 [connection signal="body_entered" from="DeathZone" to="GameManager" method="respawn_player"]
 [connection signal="body_entered" from="JumpPad" to="JumpPad" method="_on_body_entered"]

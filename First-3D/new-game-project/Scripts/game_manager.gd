@@ -11,6 +11,8 @@ static var instance: GameManager
 
 @export var item_labels: Dictionary[String, Label]
 
+#keep track of the checkpoints thats activated.
+var activated_checkpoints: Array[Checkpoint]
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if instance == null: 
@@ -25,8 +27,12 @@ func _process(delta: float) -> void:
 
 func respawn_player(body: Node3D) -> void:
 	if body is CharacterBody3D:
-		get_tree().reload_current_scene()
-
+		#if havent had any check point, respawn at the start
+		if len(activated_checkpoints) == 0:
+			Player.instance.position = Player.instance.spawn_position
+		else:
+			#we want to respawn at the last check point
+			Player.instance.position = activated_checkpoints[-1].position + Vector3(-2,3,0)
 func collect_item(item_type):
 	collected_items[item_type] += 1
 	item_labels[item_type].text = str(collected_items[item_type])
