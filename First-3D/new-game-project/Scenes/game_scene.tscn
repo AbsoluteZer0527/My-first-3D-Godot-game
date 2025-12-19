@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://duvjmwvyd5uii"]
+[gd_scene load_steps=36 format=3 uid="uid://duvjmwvyd5uii"]
 
 [ext_resource type="PackedScene" uid="uid://bo0pwsa6hw5ue" path="res://Scenes/player.tscn" id="1_x87qo"]
 [ext_resource type="PackedScene" uid="uid://ch5wgsbao1ifm" path="res://Assets/Models/Cube_Prototype_Large_A.gltf" id="2_b6fju"]
@@ -14,8 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cxf6jdceg48n4" path="res://Assets/Models/obstacle.glb" id="12_4xiap"]
 [ext_resource type="Texture2D" uid="uid://dex0stevxc04f" path="res://Assets/Textures/rainbow_texture.png" id="13_wywco"]
 [ext_resource type="PackedScene" uid="uid://82xd6fhjrcus" path="res://Assets/Models/Primitive_Beam.gltf" id="14_ldntv"]
-[ext_resource type="Script" uid="uid://m1t0vw10y2w0" path="res://Scripts/checkpoint.gd" id="15_a7fet"]
-[ext_resource type="PackedScene" uid="uid://do5jcae0t2yp0" path="res://Assets/Models/checkpoint.glb" id="15_w8jfd"]
+[ext_resource type="PackedScene" uid="uid://b34sustvywb1x" path="res://Scenes/checkpoint.tscn" id="15_w8jfd"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_oqyrl"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -156,72 +155,6 @@ _data = {
 &"RESET": SubResource("Animation_8m72m"),
 &"rotate": SubResource("Animation_a7fet")
 }
-
-[sub_resource type="Animation" id="Animation_gtbs0"]
-resource_name = "Flag"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Flag:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Flag:surface_material_override/0:albedo_color")
-tracks/1/interp = 0
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 0, 0, 1), Color(0, 1, 0.099999905, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_np3vi"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Flag:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Flag:surface_material_override/0:albedo_color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 0, 0, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_mipjh"]
-_data = {
-&"Flag": SubResource("Animation_gtbs0"),
-&"RESET": SubResource("Animation_np3vi")
-}
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a7fet"]
-albedo_color = Color(1, 0, 0, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_8m72m"]
-size = Vector3(3, 4, 3)
 
 [node name="GameScene" type="Node3D"]
 
@@ -523,7 +456,7 @@ text = "0"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52, 9, 46)
 
 [node name="Obstacle" parent="obstacle" index="0"]
-transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, -0.97901917, -0.32938957, -1.2287979)
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 1.0209808, -0.32938957, -1.2287979)
 surface_material_override/0 = SubResource("StandardMaterial3D_wywco")
 surface_material_override/1 = SubResource("StandardMaterial3D_ldntv")
 surface_material_override/2 = SubResource("StandardMaterial3D_w8jfd")
@@ -534,28 +467,19 @@ libraries = {
 }
 autoplay = "rotate"
 
-[node name="Checkpoint" type="Area3D" parent="."]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 13, 4, 13)
-script = ExtResource("15_a7fet")
+[node name="Checkpoint" parent="." instance=ExtResource("15_w8jfd")]
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 13, 4, 13)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Checkpoint"]
-root_node = NodePath("../checkpoint")
-libraries = {
-&"": SubResource("AnimationLibrary_mipjh")
-}
+[node name="Checkpoint2" parent="." instance=ExtResource("15_w8jfd")]
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 17, 4, 48)
 
-[node name="checkpoint" parent="Checkpoint" instance=ExtResource("15_w8jfd")]
+[node name="Checkpoint3" parent="." instance=ExtResource("15_w8jfd")]
+transform = Transform3D(1.9470718e-07, 0, -1, 0, 1, 0, 1, 0, 1.9470718e-07, 45, 9, 44)
 
-[node name="Flag" parent="Checkpoint/checkpoint" index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_a7fet")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Checkpoint"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.5, 1)
-shape = SubResource("BoxShape3D_8m72m")
+[node name="Checkpoint4" parent="." instance=ExtResource("15_w8jfd")]
+transform = Transform3D(1.9470718e-07, 0, -1, 0, 1, 0, 1, 0, 1.9470718e-07, 91, 9, 44)
 
 [connection signal="body_entered" from="DeathZone" to="GameManager" method="respawn_player"]
 [connection signal="body_entered" from="JumpPad" to="JumpPad" method="_on_body_entered"]
-[connection signal="body_entered" from="Checkpoint" to="Checkpoint" method="_on_body_entered"]
 
 [editable path="obstacle"]
-[editable path="Checkpoint/checkpoint"]

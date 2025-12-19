@@ -1,6 +1,6 @@
 extends Area3D
 
-
+var is_activated: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -12,5 +12,6 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node3D) -> void:
-	if body is CharacterBody3D:
+	if body is CharacterBody3D and not is_activated:
 		$AnimationPlayer.play('Flag')
+		is_activated = true
