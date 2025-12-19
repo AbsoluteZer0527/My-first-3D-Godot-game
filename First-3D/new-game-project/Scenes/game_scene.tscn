@@ -304,7 +304,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58, 5, 45)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 43)
 
 [node name="Primitive_Beam2" parent="Ground" instance=ExtResource("14_ldntv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 8, 45)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.0006, 8.004977, 44.99964)
 
 [node name="Primitive_Beam3" parent="Ground" instance=ExtResource("14_ldntv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68, 8, 45)
@@ -474,7 +474,7 @@ transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 13, 
 transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 17, 4, 48)
 
 [node name="Checkpoint3" parent="." instance=ExtResource("15_w8jfd")]
-transform = Transform3D(1.9470718e-07, 0, -1, 0, 1, 0, 1, 0, 1.9470718e-07, 45, 9, 44)
+transform = Transform3D(1.9470718e-07, 0, -1, 0, 1, 0, 1, 0, 1.9470718e-07, 47, 9, 44)
 
 [node name="Checkpoint4" parent="." instance=ExtResource("15_w8jfd")]
 transform = Transform3D(1.9470718e-07, 0, -1, 0, 1, 0, 1, 0, 1.9470718e-07, 91, 9, 44)
