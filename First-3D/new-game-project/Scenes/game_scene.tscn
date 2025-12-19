@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://duvjmwvyd5uii"]
+[gd_scene load_steps=40 format=3 uid="uid://duvjmwvyd5uii"]
 
 [ext_resource type="PackedScene" uid="uid://bo0pwsa6hw5ue" path="res://Scenes/player.tscn" id="1_x87qo"]
 [ext_resource type="PackedScene" uid="uid://ch5wgsbao1ifm" path="res://Assets/Models/Cube_Prototype_Large_A.gltf" id="2_b6fju"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cxf6jdceg48n4" path="res://Assets/Models/obstacle.glb" id="12_4xiap"]
 [ext_resource type="Texture2D" uid="uid://dex0stevxc04f" path="res://Assets/Textures/rainbow_texture.png" id="13_wywco"]
 [ext_resource type="PackedScene" uid="uid://82xd6fhjrcus" path="res://Assets/Models/Primitive_Beam.gltf" id="14_ldntv"]
+[ext_resource type="PackedScene" uid="uid://do5jcae0t2yp0" path="res://Assets/Models/checkpoint.glb" id="15_w8jfd"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_oqyrl"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -153,6 +154,69 @@ tracks/0/keys = {
 _data = {
 &"RESET": SubResource("Animation_8m72m"),
 &"rotate": SubResource("Animation_a7fet")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a7fet"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_gtbs0"]
+resource_name = "Flag"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Flag:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Flag:surface_material_override/0:albedo_color")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(0, 1, 0.099999905, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_np3vi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Flag:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Flag:surface_material_override/0:albedo_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mipjh"]
+_data = {
+&"Flag": SubResource("Animation_gtbs0"),
+&"RESET": SubResource("Animation_np3vi")
 }
 
 [node name="GameScene" type="Node3D"]
@@ -301,6 +365,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58, 5, 45)
 
 [node name="Cube_Prototype_Large_A18" parent="Ground" instance=ExtResource("2_b6fju")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 43)
+
+[node name="Primitive_Beam2" parent="Ground" instance=ExtResource("14_ldntv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 8, 45)
+
+[node name="Primitive_Beam3" parent="Ground" instance=ExtResource("14_ldntv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68, 8, 45)
+
+[node name="Primitive_Beam4" parent="Ground" instance=ExtResource("14_ldntv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75, 8, 45)
+
+[node name="Primitive_Beam5" parent="Ground" instance=ExtResource("14_ldntv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79, 8, 45)
 
 [node name="MovingPlatform" type="AnimatableBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 4, 38.111576)
@@ -454,19 +530,21 @@ libraries = {
 }
 autoplay = "rotate"
 
-[node name="Primitive_Beam2" parent="." instance=ExtResource("14_ldntv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 8, 45)
+[node name="Checkpoint" type="Area3D" parent="."]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 13, 4, 13)
 
-[node name="Primitive_Beam3" parent="." instance=ExtResource("14_ldntv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68, 8, 45)
+[node name="checkpoint" parent="Checkpoint" instance=ExtResource("15_w8jfd")]
 
-[node name="Primitive_Beam4" parent="." instance=ExtResource("14_ldntv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75, 8, 45)
+[node name="Flag" parent="Checkpoint/checkpoint" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_a7fet")
 
-[node name="Primitive_Beam5" parent="." instance=ExtResource("14_ldntv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79, 8, 45)
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Checkpoint/checkpoint"]
+libraries = {
+&"": SubResource("AnimationLibrary_mipjh")
+}
 
 [connection signal="body_entered" from="DeathZone" to="GameManager" method="respawn_player"]
 [connection signal="body_entered" from="JumpPad" to="JumpPad" method="_on_body_entered"]
 
 [editable path="obstacle"]
+[editable path="Checkpoint/checkpoint"]
