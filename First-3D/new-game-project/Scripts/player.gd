@@ -1,10 +1,23 @@
 extends CharacterBody3D
+class_name Player
 
+static var instance: Player
 
 @export var speed = 5.0
 @export var jump_velocity = 4.5
 
 @export var camera: Camera3D
+
+var spawn_position
+
+func _ready() -> void:
+	#keep track of player instance and make sure only one player exist.
+	if instance == null:
+		instance = self
+	else:
+		queue_free()
+		
+	spawn_position = position
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.

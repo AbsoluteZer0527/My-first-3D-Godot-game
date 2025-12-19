@@ -27,8 +27,21 @@ func _process(delta: float) -> void:
 
 func respawn_player(body: Node3D) -> void:
 	if body is CharacterBody3D:
-		get_tree().reload_current_scene()
-
+		#if havent had any check point, respawn at the start
+		if len(activated_checkpoints) == 0:
+			Player.instance.position = Player.instance.spawn_position
+		else:
+			#we want to respawn at the closet check point
+			var closest_checkpoint = activated_checkpoints[0]
+			var closest_distance = closest_checkpoint.position.distance_squared_to(Player.instance.position)
+			
+			for checkpoint in activated_checkpoints:
+				var distance = closest_checkpoint.position.distance_squared_to(Player.instance.position)
+				if distance < closest_distance:
+					closest_checkpoint = checkpoint
+					closest_distance = distance
+					
+			Player.instance.position = closest_checkpoint.position + Vector3(-2,3,0)
 func collect_item(item_type):
 	collected_items[item_type] += 1
 	item_labels[item_type].text = str(collected_items[item_type])
