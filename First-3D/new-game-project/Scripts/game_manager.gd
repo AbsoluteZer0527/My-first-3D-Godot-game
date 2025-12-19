@@ -11,6 +11,8 @@ static var instance: GameManager
 
 @export var item_labels: Dictionary[String, Label]
 
+#keep track of the checkpoints thats activated.
+var activated_checkpoints: Array[Checkpoint]
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if instance == null: 

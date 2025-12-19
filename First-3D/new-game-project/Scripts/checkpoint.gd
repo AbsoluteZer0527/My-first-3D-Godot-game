@@ -1,4 +1,5 @@
 extends Area3D
+class_name Checkpoint 
 
 var is_activated: bool = false
 # Called when the node enters the scene tree for the first time.
@@ -15,3 +16,5 @@ func _on_body_entered(body: Node3D) -> void:
 	if body is CharacterBody3D and not is_activated:
 		$AnimationPlayer.play('Flag')
 		is_activated = true
+		#add current checkpoint to the array as we touch the checkpoint.
+		GameManager.instance.activated_checkpoints.append(self)
