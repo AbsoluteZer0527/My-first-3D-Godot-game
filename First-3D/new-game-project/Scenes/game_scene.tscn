@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://duvjmwvyd5uii"]
+[gd_scene load_steps=10 format=3 uid="uid://duvjmwvyd5uii"]
 
 [ext_resource type="Script" uid="uid://bknv0xij1p34" path="res://Scripts/player.gd" id="1_x87qo"]
+[ext_resource type="Script" uid="uid://ghwpxdc08fq6" path="res://Scripts/camera_controller.gd" id="2_b6fju"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_oqyrl"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -52,5 +53,9 @@ mesh = SubResource("CapsuleMesh_x87qo")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 shape = SubResource("CapsuleShape3D_b6fju")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 4)
+[node name="SpringArm3D" type="SpringArm3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+spring_length = 5.0
+script = ExtResource("2_b6fju")
+
+[node name="Camera3D" type="Camera3D" parent="Player/SpringArm3D"]
