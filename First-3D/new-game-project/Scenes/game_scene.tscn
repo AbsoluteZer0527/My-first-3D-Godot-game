@@ -1,4 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://duvjmwvyd5uii"]
+[gd_scene load_steps=9 format=3 uid="uid://duvjmwvyd5uii"]
+
+[ext_resource type="Script" uid="uid://bknv0xij1p34" path="res://Scripts/player.gd" id="1_x87qo"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_oqyrl"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -14,6 +16,9 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_oqyrl"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_b6fju"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_x87qo"]
 
@@ -32,8 +37,14 @@ shadow_enabled = true
 transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0, 0, 0)
 mesh = SubResource("BoxMesh_oqyrl")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_b6fju")
+
 [node name="Player" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+script = ExtResource("1_x87qo")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
 mesh = SubResource("CapsuleMesh_x87qo")
