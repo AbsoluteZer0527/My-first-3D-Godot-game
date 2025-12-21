@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bo0pwsa6hw5ue"]
+[gd_scene load_steps=10 format=3 uid="uid://bo0pwsa6hw5ue"]
 
 [ext_resource type="Script" uid="uid://catiphr4uxxil" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Script" uid="uid://bt5xq5fm63sa7" path="res://Scripts/CameraController.gd" id="2_6t5aa"]
@@ -10,6 +10,26 @@ height = 2.2910743
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_b6fju"]
 radius = 0.1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6t5aa"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vgqql"]
+animation = &"Jump_Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fkybt"]
+animation = &"Running_A"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_x3wgy"]
+states/End/position = Vector2(752.5714, 100.244896)
+states/Idle/node = SubResource("AnimationNodeAnimation_6t5aa")
+states/Idle/position = Vector2(433.3698, 96.42857)
+states/Jump_Idle/node = SubResource("AnimationNodeAnimation_vgqql")
+states/Jump_Idle/position = Vector2(603.6555, 98.44607)
+states/Running_A/node = SubResource("AnimationNodeAnimation_fkybt")
+states/Running_A/position = Vector2(556.2269, 194.14285)
+states/Start/position = Vector2(250.85715, 92.87463)
+graph_offset = Vector2(112.22696, -9)
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "model")]
 script = ExtResource("1_cvnsp")
@@ -30,3 +50,9 @@ script = ExtResource("2_6t5aa")
 
 [node name="Player" parent="." instance=ExtResource("3_6t5aa")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -0.92583907, 0)
+
+[node name="AnimationTree" type="AnimationTree" parent="Player"]
+tree_root = SubResource("AnimationNodeStateMachine_x3wgy")
+anim_player = NodePath("../AnimationPlayer")
+
+[editable path="Player"]
