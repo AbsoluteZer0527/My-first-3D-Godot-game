@@ -9,13 +9,15 @@ static var instance: Player
 @export var camera: Camera3D
 @export var model: Node3D
 var spawn_position
+var target_angle: float = PI
 
 func _process(delta: float) -> void: 
 	var camera_angle = camera.global_rotation.y
 	var input_dir := Input.get_vector("left", "right", "forward", "backward")
 	var input_angle = atan2(input_dir.x, input_dir.y)
 	if input_dir != Vector2.ZERO:
-		model.global_rotation.y = camera_angle + input_angle
+		target_angle = camera_angle + input_angle
+	model.global_rotation.y = lerp_angle(model.global_rotation.y, target_angle, delta* 15)
 func _ready() -> void:
 	#keep track of player instance and make sure only one player exist.
 	if instance == null:
