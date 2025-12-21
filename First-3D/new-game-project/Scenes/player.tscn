@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://bo0pwsa6hw5ue"]
 
 [ext_resource type="Script" uid="uid://catiphr4uxxil" path="res://Scripts/player.gd" id="1_cvnsp"]
-[ext_resource type="Script" uid="uid://bt5xq5fm63sa7" path="res://Scripts/CameraController.gd" id="2_6t5aa"]
+[ext_resource type="Script" path="res://Scripts/CameraController.gd" id="2_6t5aa"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x87qo"]
-radius = 0.001
+radius = 0.5019531
 height = 2.005
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_b6fju"]
