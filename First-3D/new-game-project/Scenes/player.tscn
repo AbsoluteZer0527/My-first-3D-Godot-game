@@ -1,11 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bo0pwsa6hw5ue"]
+[gd_scene load_steps=6 format=3 uid="uid://bl8eml8u2wmuv"]
 
 [ext_resource type="Script" uid="uid://catiphr4uxxil" path="res://Scripts/player.gd" id="1_cvnsp"]
-[ext_resource type="Script" uid="uid://bt5xq5fm63sa7" path="res://Scripts/CameraController.gd" id="2_6t5aa"]
+[ext_resource type="Script" path="res://Scripts/CameraController.gd" id="2_6t5aa"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x87qo"]
-radius = 0.001
-height = 2.005
+radius = 0.50146484
+height = 2.0193124
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_b6fju"]
 
@@ -17,6 +17,7 @@ script = ExtResource("1_cvnsp")
 camera = NodePath("SpringArm3D/Camera3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.009656191, 0)
 shape = SubResource("CapsuleShape3D_x87qo")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
