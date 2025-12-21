@@ -11,9 +11,10 @@ height = 2.2910743
 [sub_resource type="SphereShape3D" id="SphereShape3D_b6fju"]
 radius = 0.1
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "model")]
 script = ExtResource("1_cvnsp")
 camera = NodePath("SpringArm3D/Camera3D")
+model = NodePath("Player")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11457461, 0)
