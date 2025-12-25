@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b34sustvywb1x"]
+[gd_scene load_steps=8 format=3 uid="uid://hsuh8ya3tu7r"]
 
 [ext_resource type="Script" uid="uid://m1t0vw10y2w0" path="res://Scripts/checkpoint.gd" id="1_2cwi7"]
 [ext_resource type="PackedScene" uid="uid://do5jcae0t2yp0" path="res://Assets/Models/checkpoint.glb" id="2_e75gc"]

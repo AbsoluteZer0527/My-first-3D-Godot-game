@@ -3,6 +3,8 @@ class_name Checkpoint
 
 var is_activated: bool = false
 # Called when the node enters the scene tree for the first time.
+
+@export var is_final_checkpoint: bool = false
 func _ready() -> void:
 	pass # Replace with function body.
 
@@ -18,3 +20,6 @@ func _on_body_entered(body: Node3D) -> void:
 		is_activated = true
 		#add current checkpoint to the array as we touch the checkpoint.
 		GameManager.instance.activated_checkpoints.append(self)
+		
+		if is_final_checkpoint:
+			GameManager.instance.win_game()

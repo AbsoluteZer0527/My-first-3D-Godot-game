@@ -1,12 +1,13 @@
-[gd_scene load_steps=36 format=3 uid="uid://duvjmwvyd5uii"]
+[gd_scene load_steps=34 format=3 uid="uid://duvjmwvyd5uii"]
 
+[ext_resource type="Environment" uid="uid://dtmbj6ayoh18e" path="res://game_scene.tres" id="1_a7fet"]
 [ext_resource type="PackedScene" uid="uid://bo0pwsa6hw5ue" path="res://Scenes/player.tscn" id="1_x87qo"]
 [ext_resource type="PackedScene" uid="uid://ch5wgsbao1ifm" path="res://Assets/Models/Cube_Prototype_Large_A.gltf" id="2_b6fju"]
 [ext_resource type="PackedScene" uid="uid://cp58xtnmho1kk" path="res://Assets/Models/Floor.gltf" id="3_6h5vk"]
 [ext_resource type="Script" uid="uid://klep18oa8dh7" path="res://Scripts/game_manager.gd" id="4_fiftr"]
-[ext_resource type="Script" uid="uid://shp4psbqq4fv" path="res://Scripts/jump_pad.gd" id="5_rgj8m"]
+[ext_resource type="Script" path="res://Scripts/jump_pad.gd" id="5_rgj8m"]
 [ext_resource type="PackedScene" uid="uid://dtpoxg8oswypy" path="res://Assets/Models/Primitive_Floor.gltf" id="6_2fmhe"]
-[ext_resource type="PackedScene" uid="uid://c131uyqd7r750" path="res://Scenes/collectable.tscn" id="7_2fmhe"]
+[ext_resource type="PackedScene" path="res://Scenes/collectable.tscn" id="7_2fmhe"]
 [ext_resource type="Texture2D" uid="uid://c8fjg1s34jkmi" path="res://Assets/Textures/diamond_icon.png" id="8_uscyt"]
 [ext_resource type="Theme" uid="uid://catwci5u1txuw" path="res://main_ui.tres" id="9_4xiap"]
 [ext_resource type="Texture2D" uid="uid://hkklphne2xsk" path="res://Assets/Textures/coin_icon.png" id="10_wywco"]
@@ -14,20 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cxf6jdceg48n4" path="res://Assets/Models/obstacle.glb" id="12_4xiap"]
 [ext_resource type="Texture2D" uid="uid://dex0stevxc04f" path="res://Assets/Textures/rainbow_texture.png" id="13_wywco"]
 [ext_resource type="PackedScene" uid="uid://82xd6fhjrcus" path="res://Assets/Models/Primitive_Beam.gltf" id="14_ldntv"]
-[ext_resource type="PackedScene" uid="uid://b34sustvywb1x" path="res://Scenes/checkpoint.tscn" id="15_w8jfd"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_oqyrl"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-
-[sub_resource type="Sky" id="Sky_x87qo"]
-sky_material = SubResource("ProceduralSkyMaterial_oqyrl")
-
-[sub_resource type="Environment" id="Environment_b6fju"]
-background_mode = 2
-sky = SubResource("Sky_x87qo")
-tonemap_mode = 2
-glow_enabled = true
+[ext_resource type="PackedScene" uid="uid://hsuh8ya3tu7r" path="res://Scenes/checkpoint.tscn" id="15_w8jfd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fiftr"]
 size = Vector3(4, 1, 4)
@@ -159,7 +147,7 @@ _data = {
 [node name="GameScene" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_b6fju")
+environment = ExtResource("1_a7fet")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 5.7054873, 0)
@@ -167,7 +155,7 @@ shadow_enabled = true
 directional_shadow_max_distance = 1.0
 
 [node name="Player" parent="." instance=ExtResource("1_x87qo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.233398, 4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03445816, 5.2333984, -3.686493)
 speed = 7.0
 
 [node name="Ground" type="Node3D" parent="."]
@@ -176,6 +164,9 @@ speed = 7.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
 
 [node name="Cube_Prototype_Large_A2" parent="Ground" instance=ExtResource("2_b6fju")]
+
+[node name="Cube_Prototype_Large_A10" parent="Ground" instance=ExtResource("2_b6fju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
 
 [node name="Cube_Prototype_Large_A4" parent="Ground" instance=ExtResource("2_b6fju")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12)
@@ -337,13 +328,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -17.64806, 0.051750183)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DeathZone"]
 shape = SubResource("WorldBoundaryShape3D_1ixah")
 
-[node name="GameManager" type="Node3D" parent="." node_paths=PackedStringArray("item_labels")]
+[node name="GameManager" type="Node3D" parent="." node_paths=PackedStringArray("item_labels", "win_label")]
 script = ExtResource("4_fiftr")
 item_labels = {
 "CHERRY": NodePath("../UI/PanelContainer/VBoxContainer/HBoxContainer3/Label3"),
 "COIN": NodePath("../UI/PanelContainer/VBoxContainer/HBoxContainer2/Label2"),
 "DIAMOND": NodePath("../UI/PanelContainer/VBoxContainer/HBoxContainer/Label")
 }
+win_label = NodePath("../UI/WinLabel")
 
 [node name="JumpPad" type="Area3D" parent="." node_paths=PackedStringArray("particle_system")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 4, 45)
@@ -452,6 +444,55 @@ theme = ExtResource("9_4xiap")
 theme_type_variation = &"CherryLabel"
 text = "0"
 
+[node name="WinLabel" type="Label" parent="UI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -768.5
+offset_top = -60.5
+offset_right = 768.5
+offset_bottom = 60.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+theme = ExtResource("9_4xiap")
+theme_override_font_sizes/font_size = 120
+text = "Congrats! You Finish the Game!"
+
+[node name="RestartButton" type="Button" parent="UI/WinLabel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.6120001
+anchor_right = 0.5
+anchor_bottom = 1.6120001
+offset_left = -140.0
+offset_top = -50.552017
+offset_right = 144.0
+offset_bottom = 54.447983
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("9_4xiap")
+text = "Restart Game"
+
+[node name="ReturnButton" type="Button" parent="UI/WinLabel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.6120001
+anchor_right = 0.5
+anchor_bottom = 1.6120001
+offset_left = -239.0
+offset_top = 68.15599
+offset_right = 247.0
+offset_bottom = 173.15599
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("9_4xiap")
+text = "Return Menu"
+
 [node name="obstacle" parent="." instance=ExtResource("12_4xiap")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52, 9, 46)
 
@@ -478,8 +519,11 @@ transform = Transform3D(1.9470718e-07, 0, -1, 0, 1, 0, 1, 0, 1.9470718e-07, 47, 
 
 [node name="Checkpoint4" parent="." instance=ExtResource("15_w8jfd")]
 transform = Transform3D(1.9470718e-07, 0, -1, 0, 1, 0, 1, 0, 1.9470718e-07, 91, 9, 44)
+is_final_checkpoint = true
 
 [connection signal="body_entered" from="DeathZone" to="GameManager" method="respawn_player"]
 [connection signal="body_entered" from="JumpPad" to="JumpPad" method="_on_body_entered"]
+[connection signal="pressed" from="UI/WinLabel/RestartButton" to="GameManager" method="reload_scene"]
+[connection signal="pressed" from="UI/WinLabel/ReturnButton" to="GameManager" method="to_main_menu"]
 
 [editable path="obstacle"]
