@@ -1,5 +1,6 @@
-[gd_scene load_steps=36 format=3 uid="uid://duvjmwvyd5uii"]
+[gd_scene load_steps=34 format=3 uid="uid://duvjmwvyd5uii"]
 
+[ext_resource type="Environment" uid="uid://dtmbj6ayoh18e" path="res://game_scene.tres" id="1_a7fet"]
 [ext_resource type="PackedScene" uid="uid://bo0pwsa6hw5ue" path="res://Scenes/player.tscn" id="1_x87qo"]
 [ext_resource type="PackedScene" uid="uid://ch5wgsbao1ifm" path="res://Assets/Models/Cube_Prototype_Large_A.gltf" id="2_b6fju"]
 [ext_resource type="PackedScene" uid="uid://cp58xtnmho1kk" path="res://Assets/Models/Floor.gltf" id="3_6h5vk"]
@@ -15,19 +16,6 @@
 [ext_resource type="Texture2D" uid="uid://dex0stevxc04f" path="res://Assets/Textures/rainbow_texture.png" id="13_wywco"]
 [ext_resource type="PackedScene" uid="uid://82xd6fhjrcus" path="res://Assets/Models/Primitive_Beam.gltf" id="14_ldntv"]
 [ext_resource type="PackedScene" uid="uid://hsuh8ya3tu7r" path="res://Scenes/checkpoint.tscn" id="15_w8jfd"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_oqyrl"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-
-[sub_resource type="Sky" id="Sky_x87qo"]
-sky_material = SubResource("ProceduralSkyMaterial_oqyrl")
-
-[sub_resource type="Environment" id="Environment_b6fju"]
-background_mode = 2
-sky = SubResource("Sky_x87qo")
-tonemap_mode = 2
-glow_enabled = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fiftr"]
 size = Vector3(4, 1, 4)
@@ -159,7 +147,7 @@ _data = {
 [node name="GameScene" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_b6fju")
+environment = ExtResource("1_a7fet")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 5.7054873, 0)
@@ -167,7 +155,7 @@ shadow_enabled = true
 directional_shadow_max_distance = 1.0
 
 [node name="Player" parent="." instance=ExtResource("1_x87qo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86, 11.233398, 42)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03445816, 5.2333984, -3.686493)
 speed = 7.0
 
 [node name="Ground" type="Node3D" parent="."]
@@ -176,6 +164,9 @@ speed = 7.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
 
 [node name="Cube_Prototype_Large_A2" parent="Ground" instance=ExtResource("2_b6fju")]
+
+[node name="Cube_Prototype_Large_A10" parent="Ground" instance=ExtResource("2_b6fju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
 
 [node name="Cube_Prototype_Large_A4" parent="Ground" instance=ExtResource("2_b6fju")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12)

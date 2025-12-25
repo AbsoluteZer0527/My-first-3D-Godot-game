@@ -1,28 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://cjstv5da8jqnl"]
+[gd_scene load_steps=6 format=3 uid="uid://cjstv5da8jqnl"]
 
 [ext_resource type="PackedScene" uid="uid://ch5wgsbao1ifm" path="res://Assets/Models/Cube_Prototype_Large_A.gltf" id="1_48xlc"]
 [ext_resource type="Script" uid="uid://d1x3nw8qsd5jp" path="res://Scripts/main_menu.gd" id="1_ce3w2"]
 [ext_resource type="PackedScene" uid="uid://2jmy55vuk2ri" path="res://Assets/Character/Player.glb" id="2_1ehe0"]
+[ext_resource type="Environment" uid="uid://dtmbj6ayoh18e" path="res://game_scene.tres" id="2_n45e2"]
 [ext_resource type="Theme" uid="uid://catwci5u1txuw" path="res://main_ui.tres" id="3_1ehe0"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ce3w2"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-
-[sub_resource type="Sky" id="Sky_n45e2"]
-sky_material = SubResource("ProceduralSkyMaterial_ce3w2")
-
-[sub_resource type="Environment" id="Environment_opfnp"]
-background_mode = 2
-sky = SubResource("Sky_n45e2")
-tonemap_mode = 2
-glow_enabled = true
 
 [node name="MainMenu" type="Node3D"]
 script = ExtResource("1_ce3w2")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_opfnp")
+environment = ExtResource("2_n45e2")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
