@@ -15,7 +15,7 @@ func _process(delta: float) -> void:
 	var camera_angle = camera.global_rotation.y
 	var input_dir := Input.get_vector("left", "right", "forward", "backward")
 	var input_angle = atan2(input_dir.x, input_dir.y)
-	if input_dir != Vector2.ZERO:
+	if input_dir != Vector2.ZERO and not GameManager.instance.is_game_over:
 		target_angle = camera_angle + input_angle
 	model.global_rotation.y = lerp_angle(model.global_rotation.y, target_angle, delta* 15)
 func _ready() -> void:
@@ -29,7 +29,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
-	if not is_on_floor():
+	if not is_on_floor() and not GameManager.instance.is_game_over:
 		velocity += get_gravity() * delta
 
 	# Handle jump.
@@ -42,7 +42,7 @@ func _physics_process(delta: float) -> void:
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	# need to use global rotation instead of camera rotation: because springArm3d is the one rotating.
 	direction  = direction.rotated(Vector3.UP, camera.global_rotation.y)
-	if direction:
+	if direction and not GameManager.instance.is_game_over:
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed
 	else:

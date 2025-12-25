@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cxf6jdceg48n4" path="res://Assets/Models/obstacle.glb" id="12_4xiap"]
 [ext_resource type="Texture2D" uid="uid://dex0stevxc04f" path="res://Assets/Textures/rainbow_texture.png" id="13_wywco"]
 [ext_resource type="PackedScene" uid="uid://82xd6fhjrcus" path="res://Assets/Models/Primitive_Beam.gltf" id="14_ldntv"]
-[ext_resource type="PackedScene" path="res://Scenes/checkpoint.tscn" id="15_w8jfd"]
+[ext_resource type="PackedScene" uid="uid://hsuh8ya3tu7r" path="res://Scenes/checkpoint.tscn" id="15_w8jfd"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_oqyrl"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -167,7 +167,7 @@ shadow_enabled = true
 directional_shadow_max_distance = 1.0
 
 [node name="Player" parent="." instance=ExtResource("1_x87qo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.233398, 4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86, 11.233398, 42)
 speed = 7.0
 
 [node name="Ground" type="Node3D" parent="."]
@@ -337,13 +337,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -17.64806, 0.051750183)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DeathZone"]
 shape = SubResource("WorldBoundaryShape3D_1ixah")
 
-[node name="GameManager" type="Node3D" parent="." node_paths=PackedStringArray("item_labels")]
+[node name="GameManager" type="Node3D" parent="." node_paths=PackedStringArray("item_labels", "win_label")]
 script = ExtResource("4_fiftr")
 item_labels = {
 "CHERRY": NodePath("../UI/PanelContainer/VBoxContainer/HBoxContainer3/Label3"),
 "COIN": NodePath("../UI/PanelContainer/VBoxContainer/HBoxContainer2/Label2"),
 "DIAMOND": NodePath("../UI/PanelContainer/VBoxContainer/HBoxContainer/Label")
 }
+win_label = NodePath("../UI/WinLabel")
 
 [node name="JumpPad" type="Area3D" parent="." node_paths=PackedStringArray("particle_system")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 4, 45)
@@ -527,6 +528,7 @@ transform = Transform3D(1.9470718e-07, 0, -1, 0, 1, 0, 1, 0, 1.9470718e-07, 47, 
 
 [node name="Checkpoint4" parent="." instance=ExtResource("15_w8jfd")]
 transform = Transform3D(1.9470718e-07, 0, -1, 0, 1, 0, 1, 0, 1.9470718e-07, 91, 9, 44)
+is_final_checkpoint = true
 
 [connection signal="body_entered" from="DeathZone" to="GameManager" method="respawn_player"]
 [connection signal="body_entered" from="JumpPad" to="JumpPad" method="_on_body_entered"]
