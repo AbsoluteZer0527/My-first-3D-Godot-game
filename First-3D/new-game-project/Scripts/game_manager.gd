@@ -49,3 +49,6 @@ func win_game():
 
 func reload_scene() -> void:
 	get_tree().reload_current_scene()
+
+func to_main_menu() -> void:
+	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
