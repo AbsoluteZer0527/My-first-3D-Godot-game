@@ -532,5 +532,6 @@ is_final_checkpoint = true
 
 [connection signal="body_entered" from="DeathZone" to="GameManager" method="respawn_player"]
 [connection signal="body_entered" from="JumpPad" to="JumpPad" method="_on_body_entered"]
+[connection signal="pressed" from="UI/WinLabel/RestartButton" to="GameManager" method="reload_scene"]
 
 [editable path="obstacle"]

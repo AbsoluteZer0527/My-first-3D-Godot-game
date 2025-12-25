@@ -45,3 +45,7 @@ func win_game():
 	win_label.visible = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	is_game_over = true
+
+
+func reload_scene() -> void:
+	get_tree().reload_current_scene()
