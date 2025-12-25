@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cjstv5da8jqnl"]
+[gd_scene load_steps=7 format=3 uid="uid://cjstv5da8jqnl"]
 
 [ext_resource type="PackedScene" uid="uid://ch5wgsbao1ifm" path="res://Assets/Models/Cube_Prototype_Large_A.gltf" id="1_48xlc"]
 [ext_resource type="PackedScene" uid="uid://2jmy55vuk2ri" path="res://Assets/Character/Player.glb" id="2_1ehe0"]
+[ext_resource type="Theme" uid="uid://catwci5u1txuw" path="res://main_ui.tres" id="3_1ehe0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ce3w2"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -102,5 +103,42 @@ autoplay = "Idle"
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.4083633, -0.1135825, 0.90572536, 0, 0.9922283, 0.1244304, -0.9128195, -0.05081281, 0.40518963, 4.1778345, 5.888027, 0.21122122)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 1007.0
+offset_top = 265.0
+offset_right = 1485.0
+offset_bottom = 338.0
+theme = ExtResource("3_1ehe0")
+theme_override_font_sizes/font_size = 96
+text = "Island Platformer"
+
+[node name="Button" type="Button" parent="CanvasLayer/Label"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.49100003
+anchor_top = 2.036
+anchor_right = 0.49100003
+anchor_bottom = 2.036
+offset_left = -219.76703
+offset_top = -52.492004
+offset_right = 219.23297
+offset_bottom = 52.507996
+text = "Start Game"
+
+[node name="Button2" type="Button" parent="CanvasLayer/Label"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.49100003
+anchor_top = 3.5620003
+anchor_right = 0.49100003
+anchor_bottom = 3.5620003
+offset_left = -219.76703
+offset_top = -52.514038
+offset_right = 219.23297
+offset_bottom = 52.485962
+text = "Exit Game"
 
 [editable path="Player"]
