@@ -9,11 +9,24 @@ extends Control
 @export var main_dialogue: DialogueGroup
 
 var dialogue_index := 0 
+var typing_tween : Tween
+
 func display_next_dialogue():
+	if dialogue_index >= len(main_dialogue.dialogue_list):
+		visible = false
+		return
+	
 	var dialogue := main_dialogue.dialogue_list[dialogue_index]
 	
 	character_name_text.text = dialogue.character_name
-	text_box.text = dialogue.content
+	
+	#display text like typewritter
+	typing_tween = get_tree().create_tween()
+	text_box.text = ""
+	for character in dialogue.content: 
+		typing_tween.tween_callback(append_character.bind(character)).set_delay(0.05)
+	
+	typing_tween.tween_callback(func(): dialogue_index +=1)
 	if dialogue.show_on_left:
 		left_avatar.texture = dialogue.avatar
 		right_avatar.texture = null
@@ -21,8 +34,11 @@ func display_next_dialogue():
 		left_avatar.texture = null
 		right_avatar.texture = dialogue.avatar
 		
-	dialogue_index+=1
 	
+func append_character(character:  String):
+	text_box.text += character
+
+
 func _ready() -> void:
 	display_next_dialogue()
 		
