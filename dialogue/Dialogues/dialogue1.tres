@@ -1,8 +1,18 @@
-[gd_resource type="Resource" script_class="DialogueGroup" load_steps=3 format=3 uid="uid://bt7hw5gv25fmu"]
+[gd_resource type="Resource" script_class="DialogueGroup" load_steps=5 format=3 uid="uid://bt7hw5gv25fmu"]
 
 [ext_resource type="Script" uid="uid://dc4ndxmaq34hs" path="res://Scripts/dialogue.gd" id="1_gqxpp"]
+[ext_resource type="Texture2D" uid="uid://c3ncbl7r6ym2u" path="res://Pixel-Portraits-Free/Masculine_A/Masculine_A_default.png" id="2_12xai"]
 [ext_resource type="Script" uid="uid://uo86pcvsbifa" path="res://Scripts/dialogue_group.gd" id="2_lsluu"]
+
+[sub_resource type="Resource" id="Resource_7muy7"]
+script = ExtResource("1_gqxpp")
+character_name = "Bob"
+concent = "Hello this is a Dialogue"
+avatar = ExtResource("2_12xai")
+show_on_left = true
+metadata/_custom_type_script = "uid://dc4ndxmaq34hs"
 
 [resource]
 script = ExtResource("2_lsluu")
+dialogue_list = Array[ExtResource("1_gqxpp")]([SubResource("Resource_7muy7"), null, null])
 metadata/_custom_type_script = "uid://uo86pcvsbifa"
