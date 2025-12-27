@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://dj5p4l2rhrk0c"]
+[gd_scene load_steps=3 format=3 uid="uid://dj5p4l2rhrk0c"]
 
+[ext_resource type="Script" uid="uid://2o7c0jbjp13b" path="res://Dialogues/UI/dialogue_manager.gd" id="1_euu6l"]
 [ext_resource type="Texture2D" uid="uid://c3ncbl7r6ym2u" path="res://Pixel-Portraits-Free/Masculine_A/Masculine_A_default.png" id="1_qrxcj"]
 
 [node name="Control" type="Control"]
@@ -11,6 +12,7 @@ anchor_bottom = 1.0
 offset_top = -184.0
 grow_horizontal = 2
 grow_vertical = 0
+script = ExtResource("1_euu6l")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
