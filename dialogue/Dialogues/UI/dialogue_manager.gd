@@ -26,5 +26,8 @@ func display_next_dialogue():
 func _ready() -> void:
 	display_next_dialogue()
 		
+func _on_click(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		display_next_dialogue()
 		
 		

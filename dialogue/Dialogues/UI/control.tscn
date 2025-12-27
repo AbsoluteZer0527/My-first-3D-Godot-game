@@ -67,3 +67,5 @@ custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 texture = ExtResource("1_qrxcj")
 stretch_mode = 5
+
+[connection signal="gui_input" from="HBoxContainer/Panel" to="." method="_on_click"]
