@@ -17,6 +17,9 @@ var mouse_pos: Vector2
 var mouse_in_pos: Vector2
 var vel:Vector2
 
+var round_time:float = 3.0
+var time_count:float = 0
+
 func _ready() -> void:
 	playback = animation_tree.get("parameters/playback")
 	screen = DisplayServer.screen_get_size()
@@ -39,7 +42,7 @@ func _input(event):
 		
 func _physics_process(delta: float) -> void:
 	vel = Vector2.ZERO
-	var direction := Vector2(Input.get_axis("ui_left", "ui_right"), Input.get_axis("ui_up", "ui_down"))
+	direction = Vector2(Input.get_axis("ui_left", "ui_right"), Input.get_axis("ui_up", "ui_down"))
 	if direction != Vector2.ZERO:
 		vel = direction * delta * SPEED
 		
@@ -51,6 +54,18 @@ func _physics_process(delta: float) -> void:
 
 	pick_new_state() 
 	
+#random walking
+var walk:float = false
+func select_new_direction() -> Vector2:
+	walk = !walk
+	if walk:
+		return Vector2(
+			randi_range(-1,1),
+			randi_range(-1,1)
+		)
+	else:
+		return Vector2.ZERO
+		
 func pick_new_state():
 	if dragging:
 		playback.travel("fly")
