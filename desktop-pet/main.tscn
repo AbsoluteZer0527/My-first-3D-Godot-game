@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgih3026637xi"]
+
+[ext_resource type="Texture2D" uid="uid://t36s8quepmpf" path="res://dinoCharactersVersion1.1/sheets/DinoSprites - vita.png" id="1_ig7tw"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="AnimationTree" type="AnimationTree" parent="CharacterBody2D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D"]
+root_node = NodePath("../Sprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+texture = ExtResource("1_ig7tw")
+hframes = 24
