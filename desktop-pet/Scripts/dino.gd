@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-const SPEED = 300.0
+const SPEED = 100.0
 const JUMP_VELOCITY = -400.0
 const WIN_SIZE = Vector2(64,64)
 
@@ -40,12 +40,21 @@ func _input(event):
 	if event is InputEventKey and event.is_action_pressed("exit"):
 		get_tree().quit()
 		
+var auto_direction:Vector2
+
 func _physics_process(delta: float) -> void:
 	vel = Vector2.ZERO
 	direction = Vector2(Input.get_axis("ui_left", "ui_right"), Input.get_axis("ui_up", "ui_down"))
 	if direction != Vector2.ZERO:
 		vel = direction * delta * SPEED
-		
+		time_count = round_time
+	else:
+		time_count -= delta
+		if time_count < 0:
+			time_count = round_time
+			auto_direction = select_new_direction()
+		vel = auto_direction * SPEED * delta
+	
 	win_pos = Vector2(get_tree().get_root().position) + vel
 	win_pos.x = clamp(win_pos.x, 0, screen.x)
 	win_pos.y = clamp(win_pos.y, 0, screen.y)
