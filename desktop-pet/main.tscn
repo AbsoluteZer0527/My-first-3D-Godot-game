@@ -1,18 +1,124 @@
-[gd_scene load_steps=2 format=3 uid="uid://bgih3026637xi"]
+[gd_scene load_steps=12 format=3 uid="uid://bgih3026637xi"]
 
 [ext_resource type="Texture2D" uid="uid://t36s8quepmpf" path="res://dinoCharactersVersion1.1/sheets/DinoSprites - vita.png" id="1_ig7tw"]
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ig7tw"]
+animation = &"fly"
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0xm2m"]
+animation = &"idle"
 
-[node name="AnimationTree" type="AnimationTree" parent="CharacterBody2D"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_h2yge"]
+animation = &"walk"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1bvp3"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_lquwl"]
+states/End/position = Vector2(697.1428, 141.55103)
+states/Start/position = Vector2(193.14285, 105.14286)
+states/fly/node = SubResource("AnimationNodeAnimation_ig7tw")
+states/fly/position = Vector2(458.28568, 111.04957)
+states/idle/node = SubResource("AnimationNodeAnimation_0xm2m")
+states/idle/position = Vector2(329.20285, 71.71429)
+states/walk/node = SubResource("AnimationNodeAnimation_h2yge")
+states/walk/position = Vector2(329.38776, 176.28572)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_1bvp3")]
+
+[sub_resource type="Animation" id="Animation_ig7tw"]
+resource_name = "idle"
+length = 0.6
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_0xm2m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_h2yge"]
+resource_name = "fly"
+length = 0.1
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.19999999),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [19]
+}
+
+[sub_resource type="Animation" id="Animation_1bvp3"]
+resource_name = "walk"
+length = 0.6
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 4, 5, 6, 7, 8, 9]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lquwl"]
+_data = {
+&"RESET": SubResource("Animation_0xm2m"),
+&"fly": SubResource("Animation_h2yge"),
+&"idle": SubResource("Animation_ig7tw"),
+&"walk": SubResource("Animation_1bvp3")
+}
+
+[node name="main" type="Node2D"]
+
+[node name="dino" type="CharacterBody2D" parent="."]
+
+[node name="AnimationTree" type="AnimationTree" parent="dino"]
 root_node = NodePath("../Sprite2D")
+tree_root = SubResource("AnimationNodeStateMachine_lquwl")
+anim_player = NodePath("../AnimationPlayer")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="dino"]
+root_node = NodePath("../Sprite2D")
+libraries = {
+&"": SubResource("AnimationLibrary_lquwl")
+}
 
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="dino"]
+
+[node name="Sprite2D" type="Sprite2D" parent="dino"]
 texture = ExtResource("1_ig7tw")
 hframes = 24
