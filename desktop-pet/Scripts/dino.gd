@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
+const WIN_SIZE = Vector2(64,64)
 
 @onready var body = $Body
 @onready var animation_tree = $AnimationTree
@@ -19,7 +20,7 @@ var vel:Vector2
 func _ready() -> void:
 	playback = animation_tree.get("parameters/playback")
 	screen = DisplayServer.screen_get_size()
-
+	get_tree().get_root().size = WIN_SIZE
 func _input(event):
 	#record when the mouse is pressed down
 	if event is InputEventMouseButton:
@@ -37,7 +38,7 @@ func _input(event):
 		get_tree().quit()
 		
 func _physics_process(delta: float) -> void:
-	
+	vel = Vector2.ZERO
 	var direction := Vector2(Input.get_axis("ui_left", "ui_right"), Input.get_axis("ui_up", "ui_down"))
 	if direction != Vector2.ZERO:
 		vel = direction * delta * SPEED
