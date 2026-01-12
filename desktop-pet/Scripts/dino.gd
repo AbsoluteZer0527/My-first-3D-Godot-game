@@ -55,9 +55,15 @@ func _physics_process(delta: float) -> void:
 			auto_direction = select_new_direction()
 		vel = auto_direction * SPEED * delta
 	
+	if vel.x > 0 and body.flip_h:
+		body.flip_h = false
+	elif vel.x < 0 and !body.flip_h:
+		body.flip_h = true
+		
+	
 	win_pos = Vector2(get_tree().get_root().position) + vel
-	win_pos.x = clamp(win_pos.x, 0, screen.x)
-	win_pos.y = clamp(win_pos.y, 0, screen.y)
+	win_pos.x = clamp(win_pos.x, 0, screen.x - WIN_SIZE.x)
+	win_pos.y = clamp(win_pos.y, 0, screen.y - WIN_SIZE.y)
 	
 	get_tree().get_root().position = win_pos
 
