@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bgih3026637xi"]
+[gd_scene load_steps=18 format=3 uid="uid://bgih3026637xi"]
 
 [ext_resource type="Script" uid="uid://cvemwb2flbqhe" path="res://Scripts/dino.gd" id="1_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://t36s8quepmpf" path="res://dinoCharactersVersion1.1/sheets/DinoSprites - vita.png" id="1_ig7tw"]
@@ -15,6 +15,18 @@ animation = &"walk"
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1bvp3"]
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0xm2m"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h2yge"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lquwl"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7mycd"]
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_lquwl"]
 states/End/position = Vector2(697.1428, 141.55103)
 states/Start/position = Vector2(193.14285, 105.14286)
@@ -24,7 +36,7 @@ states/idle/node = SubResource("AnimationNodeAnimation_0xm2m")
 states/idle/position = Vector2(329.20285, 71.71429)
 states/walk/node = SubResource("AnimationNodeAnimation_h2yge")
 states/walk/position = Vector2(329.38776, 176.28572)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_1bvp3")]
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_1bvp3"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_0xm2m"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_h2yge"), "idle", "fly", SubResource("AnimationNodeStateMachineTransition_lquwl"), "fly", "idle", SubResource("AnimationNodeStateMachineTransition_7mycd")]
 
 [sub_resource type="Animation" id="Animation_0xm2m"]
 length = 0.001

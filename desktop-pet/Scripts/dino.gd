@@ -42,6 +42,18 @@ func _physics_process(delta: float) -> void:
 	if direction != Vector2.ZERO:
 		vel = direction * delta * SPEED
 		
-	win_pos
+	win_pos = Vector2(get_tree().get_root().position) + vel
+	win_pos.x = clamp(win_pos.x, 0, screen.x)
+	win_pos.y = clamp(win_pos.y, 0, screen.y)
+	
+	get_tree().get_root().position = win_pos
 
-	move_and_slide()
+	pick_new_state() 
+	
+func pick_new_state():
+	if dragging:
+		playback.travel("fly")
+	elif (vel != Vector2.ZERO):
+		playback.travel("walk")
+	else:
+		playback.travel("idle")
