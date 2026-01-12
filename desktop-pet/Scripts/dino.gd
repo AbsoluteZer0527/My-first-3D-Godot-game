@@ -20,10 +20,17 @@ func _ready() -> void:
 	screen = DisplayServer.screen_get_size()
 
 func _input(event):
+	#record when the mouse is pressed down
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			dragging = true
 			mouse_in_pos = get_viewport().get_mouse_position()
+		else:
+			dragging = false
+			
+	if event is InputEventMouseMotion and dragging:
+		mouse_pos = get_viewport().get_mouse_position()
+		get_tree().get_root().position = Vector2(get_tree().get_root().position) + mouse_pos - mouse_in_pos
 
 func _physics_process(delta: float) -> void:
 
