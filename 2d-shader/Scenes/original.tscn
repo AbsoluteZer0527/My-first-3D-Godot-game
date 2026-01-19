@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cis4gpfh8igqw"]
+[gd_scene load_steps=6 format=3 uid="uid://cis4gpfh8igqw"]
 
 [ext_resource type="ArrayMesh" uid="uid://bmx5gsj2dbhji" path="res://Models/Knot.res" id="2_4sp6t"]
 
@@ -15,16 +15,32 @@ height = 256
 ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_yd1f6"]
+viewport_path = NodePath("SubViewport")
+
 [node name="Scene" type="Node"]
 
 [node name="Background" type="Sprite2D" parent="."]
 texture = SubResource("GradientTexture2D_3vs1d")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport"]
 mesh = ExtResource("2_4sp6t")
+skeleton = NodePath("../..")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 0, 30, 0)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport"]
+transform = Transform3D(0.7071068, -0.49999994, 0.5000001, 0, 0.70710695, 0.7071067, -0.7071068, -0.49999994, 0.5000001, 0, 30, 0)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewport"]
 environment = SubResource("Environment_ugs4f")
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.0947895, 45.36833)
+projection = 1
+size = 30.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.50097656, 0.50097656)
+texture = SubResource("ViewportTexture_yd1f6")
