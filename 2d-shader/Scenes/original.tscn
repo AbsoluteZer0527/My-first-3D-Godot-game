@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cis4gpfh8igqw"]
+
+[ext_resource type="ArrayMesh" uid="uid://bmx5gsj2dbhji" path="res://Models/Knot.res" id="2_4sp6t"]
+
+[sub_resource type="Gradient" id="Gradient_aqfaf"]
+offsets = PackedFloat32Array(0.614583)
+colors = PackedColorArray(0.478068, 0.786693, 0.858313, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3vs1d"]
+gradient = SubResource("Gradient_aqfaf")
+width = 256
+height = 256
+
+[sub_resource type="Environment" id="Environment_ugs4f"]
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+
+[node name="Scene" type="Node"]
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_3vs1d")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_4sp6t")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 0, 30, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ugs4f")
