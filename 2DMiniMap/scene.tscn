@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=4 uid="uid://crmcdapgwdi1"]
+[gd_scene load_steps=19 format=4 uid="uid://crmcdapgwdi1"]
 
 [ext_resource type="Texture2D" uid="uid://c20ejuwxbwi3" path="res://assets/Grass.png" id="1_7ogty"]
 [ext_resource type="Texture2D" uid="uid://c8jqyc7slvxix" path="res://assets/Water.png" id="1_no5s8"]
-[ext_resource type="Script" path="res://assets/player.gd" id="3_4gd47"]
+[ext_resource type="Script" uid="uid://f6ke50ukr531" path="res://assets/player.gd" id="3_4gd47"]
 [ext_resource type="Texture2D" uid="uid://bd7v5p10f2a6q" path="res://assets/Free_Chicken_House.png" id="4_j14dv"]
 [ext_resource type="SpriteFrames" uid="uid://b0uahaq65crij" path="res://assets/chicken_animation_frames.tres" id="4_utbko"]
+[ext_resource type="Script" uid="uid://nc7cn1jg2qer" path="res://minimap_viewport.gd" id="6_y2354"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qotu5"]
 texture = ExtResource("1_7ogty")
@@ -256,8 +257,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e6r0a"]
 _data = {
-"RESET": SubResource("Animation_bktkt"),
-"patrol": SubResource("Animation_i34rw")
+&"RESET": SubResource("Animation_bktkt"),
+&"patrol": SubResource("Animation_i34rw")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_soawa"]
@@ -301,7 +302,7 @@ shape = SubResource("RectangleShape2D_qf0h2")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="NPC"]
 libraries = {
-"": SubResource("AnimationLibrary_e6r0a")
+&"": SubResource("AnimationLibrary_e6r0a")
 }
 autoplay = "patrol"
 
@@ -334,3 +335,20 @@ texture = ExtResource("4_j14dv")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ChickenHouse"]
 position = Vector2(0, 10)
 shape = SubResource("RectangleShape2D_fiiah")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -336.0
+offset_top = 18.0
+offset_right = -36.0
+offset_bottom = 318.0
+grow_horizontal = 0
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer"]
+size = Vector2i(300, 300)
+script = ExtResource("6_y2354")
