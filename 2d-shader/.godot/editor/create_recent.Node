@@ -1,0 +1,9 @@
+Camera2D
+AnimationPlayer
+Sprite2D
+Camera3D
+SubViewport
+WorldEnvironment
+DirectionalLight3D
+MeshInstance3D
+Node

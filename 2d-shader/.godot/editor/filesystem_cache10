@@ -1,0 +1,8 @@
+63f7b34db8d8cdea90c76aacccf841ec
+::res://::1768805471
+icon.svg::CompressedTexture2D::4543722644177063210::1768802546::1768802546::1::::<><><>0<>0<>265b9e1a3be5213c7000834ce467686a<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
+::res://Models/::1768804592
+Knot.res::ArrayMesh::3278000680793643310::1768804592::0::1::::<><><>0<>0<><>::
+::res://Scenes/::1768805131
+original.tscn::PackedScene::5373283219553937214::1768805131::0::1::::<><><>0<>0<><>::uid://banlllrn0cmyi::::res://Scenes/pixelize.gdshader<>uid://bmx5gsj2dbhji::::res://Models/Knot.res
+pixelize.gdshader::Shader::2413945729791951976::1768803862::0::1::::<><><>0<>0<><>::
