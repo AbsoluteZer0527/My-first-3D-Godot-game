@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://crmcdapgwdi1"]
+[gd_scene load_steps=20 format=4 uid="uid://crmcdapgwdi1"]
 
 [ext_resource type="Texture2D" uid="uid://c20ejuwxbwi3" path="res://assets/Grass.png" id="1_7ogty"]
 [ext_resource type="Texture2D" uid="uid://c8jqyc7slvxix" path="res://assets/Water.png" id="1_no5s8"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bd7v5p10f2a6q" path="res://assets/Free_Chicken_House.png" id="4_j14dv"]
 [ext_resource type="SpriteFrames" uid="uid://b0uahaq65crij" path="res://assets/chicken_animation_frames.tres" id="4_utbko"]
 [ext_resource type="Script" uid="uid://nc7cn1jg2qer" path="res://minimap_viewport.gd" id="6_y2354"]
+[ext_resource type="Texture2D" uid="uid://13rqemdivfbx" path="res://island_minimap_background.png" id="7_ni31j"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qotu5"]
 texture = ExtResource("1_7ogty")
@@ -268,6 +269,7 @@ radius = 7.0
 size = Vector2(24, 20)
 
 [node name="Game" type="Node2D"]
+visibility_layer = 3
 y_sort_enabled = true
 
 [node name="Boundary" type="TileMapLayer" parent="."]
@@ -351,9 +353,17 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer" node_paths=PackedStringArray("camera_node", "player_node")]
 canvas_item_default_texture_filter = 0
+canvas_cull_mask = 4294967294
 size = Vector2i(300, 300)
 script = ExtResource("6_y2354")
 camera_node = NodePath("Camera2D")
 player_node = NodePath("../../../Player")
 
 [node name="Camera2D" type="Camera2D" parent="CanvasLayer/SubViewportContainer/SubViewport"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visibility_layer = 2
+z_index = -5
+position = Vector2(-16, -16)
+scale = Vector2(2, 2)
+texture = ExtResource("7_ni31j")
